@@ -7,6 +7,8 @@ namespace BladesOfDeceptionCapstoneProject
     {
         public Rigidbody Rigidbody {  get; private set; }
 
+        public Transform MainCameraTransform { get; private set; }
+
         public PlayerInput Input {  get; private set; }
 
         private PlayerMovementStateMachine movementStateMachine;
@@ -16,6 +18,8 @@ namespace BladesOfDeceptionCapstoneProject
             Rigidbody = GetComponent<Rigidbody>();
 
             Input = GetComponent<PlayerInput>();
+
+            MainCameraTransform = Camera.main.transform;
 
             movementStateMachine = new PlayerMovementStateMachine(this);
         }
