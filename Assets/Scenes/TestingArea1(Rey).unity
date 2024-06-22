@@ -1999,8 +1999,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 764999818}
-  - component: {fileID: 764999819}
-  - component: {fileID: 764999820}
   - component: {fileID: 764999822}
   - component: {fileID: 764999821}
   m_Layer: 0
@@ -2027,30 +2025,6 @@ Transform:
   - {fileID: 620421636}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &764999819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764999817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1510f5a6b0fe95c45ba6e0c47ef3441a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &764999820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764999817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39b52080b14ceb542a26b60469a72480, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &764999821
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3975,7 +3949,6 @@ GameObject:
   - component: {fileID: 1994926615}
   - component: {fileID: 1994926613}
   - component: {fileID: 1994926617}
-  - component: {fileID: 1994926616}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -4053,24 +4026,7 @@ MonoBehaviour:
   PlayerIndex: -1
   AutoEnableInputs: 1
   XYAxis: {fileID: -3355418613603651259, guid: 969042b001676184c9b1772be6e5a4d8, type: 3}
-  ZAxis: {fileID: -2314708835831847674, guid: 969042b001676184c9b1772be6e5a4d8, type: 3}
---- !u!114 &1994926616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1994926612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f970e670e88e841a5912c85b4cf144, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultDistance: 6
-  minimumDistance: 1
-  maximumDistance: 6
-  smoothing: 4
-  zoomSensitivity: 1
+  ZAxis: {fileID: 0}
 --- !u!114 &1994926617
 MonoBehaviour:
   m_ObjectHideFlags: 0
