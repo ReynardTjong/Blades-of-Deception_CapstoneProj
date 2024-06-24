@@ -38,7 +38,7 @@
                     "id": "8f60e0aa-cc60-4cb5-990e-d885b9563496",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -54,6 +54,15 @@
                     "name": "DrawWeapon",
                     "type": "Button",
                     "id": "fe79dfec-6474-4371-96eb-b1aa585be394",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "fa3d5123-05a2-4966-aaa3-d72651c9ef59",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press",
@@ -142,7 +151,7 @@
                     "name": "",
                     "id": "60620791-ec1c-4341-90eb-4aacfe406209",
                     "path": "<Keyboard>/c",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Crouch",
@@ -164,10 +173,21 @@
                     "name": "",
                     "id": "e4b6497c-42ab-4801-83de-00477d72317c",
                     "path": "<Keyboard>/r",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "DrawWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09ecd6b7-4c9b-4696-a0d7-da1350c4310d",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

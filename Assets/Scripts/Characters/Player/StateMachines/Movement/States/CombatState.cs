@@ -1,20 +1,16 @@
 using UnityEngine;
-
-public class StandingState : State
+public class CombatState : State
 {
-
     float gravityValue;
-    bool jump;
-    bool crouch;
     Vector3 currentVelocity;
     bool grounded;
-    bool sprint;
+    bool sheathWeapon;
     float playerSpeed;
-    bool drawWeapon;
+    //bool attack;
 
     Vector3 cVelocity;
 
-    public StandingState(Character _character, StateMachine _stateMachine) : base(_character, _stateMachine)
+    public CombatState(Character _character, StateMachine _stateMachine) : base(_character, _stateMachine)
     {
         character = _character;
         stateMachine = _stateMachine;
@@ -24,14 +20,13 @@ public class StandingState : State
     {
         base.Enter();
 
-        jump = false;
-        crouch = false;
-        sprint = false;
+        sheathWeapon = false;
         input = Vector2.zero;
-        velocity = Vector3.zero;
         currentVelocity = Vector3.zero;
         gravityVelocity.y = 0;
+        //attack = false;
 
+        velocity = character.playerVelocity;
         playerSpeed = character.playerSpeed;
         grounded = character.controller.isGrounded;
         gravityValue = character.gravityValue;
@@ -41,22 +36,15 @@ public class StandingState : State
     {
         base.HandleInput();
 
-        if (jumpAction.triggered)
-        {
-            jump = true;
-        }
-        if (crouchAction.triggered)
-        {
-            crouch = true;
-        }
-        if (sprintAction.triggered)
-        {
-            sprint = true;
-        }
         if (drawWeaponAction.triggered)
         {
-            drawWeapon = true;
+            sheathWeapon = true;
         }
+
+        /*if (attackAction.triggered)
+        {
+            attack = true;
+        }*/
 
         input = moveAction.ReadValue<Vector2>();
         velocity = new Vector3(input.x, 0, input.y);
@@ -72,24 +60,17 @@ public class StandingState : State
 
         character.animator.SetFloat("speed", input.magnitude, character.speedDampTime, Time.deltaTime);
 
-        if (sprint)
+        if (sheathWeapon)
         {
-            stateMachine.ChangeState(character.sprinting);
-        }
-        if (jump)
-        {
-            stateMachine.ChangeState(character.jumping);
-        }
-        if (crouch)
-        {
-            stateMachine.ChangeState(character.crouching);
-        }
-        if (drawWeapon)
-        {
-            stateMachine.ChangeState(character.combatting);
-            character.animator.SetTrigger("drawWeapon");
+            character.animator.SetTrigger("sheathWeapon");
+            stateMachine.ChangeState(character.standing);
         }
 
+        /*if (attack)
+        {
+            character.animator.SetTrigger("attack");
+            stateMachine.ChangeState(character.attacking);
+        }*/
     }
 
     public override void PhysicsUpdate()
@@ -125,6 +106,7 @@ public class StandingState : State
         {
             character.transform.rotation = Quaternion.LookRotation(velocity);
         }
+
     }
 
 }
