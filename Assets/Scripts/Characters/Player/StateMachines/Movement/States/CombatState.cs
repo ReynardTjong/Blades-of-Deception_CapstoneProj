@@ -8,6 +8,8 @@ public class CombatState : State
     float playerSpeed;
     //bool attack;
 
+    [SerializeField] private GameObject katana;
+
     Vector3 cVelocity;
 
     public CombatState(Character _character, StateMachine _stateMachine) : base(_character, _stateMachine)
@@ -39,6 +41,7 @@ public class CombatState : State
         if (drawWeaponAction.triggered)
         {
             sheathWeapon = true;
+            katana.SetActive(true);
         }
 
         /*if (attackAction.triggered)
@@ -64,6 +67,7 @@ public class CombatState : State
         {
             character.animator.SetTrigger("sheathWeapon");
             stateMachine.ChangeState(character.standing);
+            katana.SetActive(false);
         }
 
         /*if (attack)
