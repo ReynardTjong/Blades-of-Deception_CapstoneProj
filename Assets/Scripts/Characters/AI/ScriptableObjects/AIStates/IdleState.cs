@@ -15,7 +15,7 @@ namespace BladesOfDeceptionCapstoneProject
             // Exit idle logic
         }
 
-        public override void Update(AIController ai)
+        public override void UpdateState(AIController ai)
         {
             // Idle update logic
             if (ai.CanSeePlayer())

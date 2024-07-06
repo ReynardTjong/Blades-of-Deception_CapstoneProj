@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 namespace BladesOfDeceptionCapstoneProject
 {
@@ -7,6 +6,6 @@ namespace BladesOfDeceptionCapstoneProject
     {
         public abstract void Enter(AIController ai);
         public abstract void Exit(AIController ai);
-        public abstract void Update(AIController ai);
+        public abstract void UpdateState(AIController ai);
     }
 }

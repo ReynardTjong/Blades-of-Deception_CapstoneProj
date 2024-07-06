@@ -29,7 +29,7 @@ namespace BladesOfDeceptionCapstoneProject
 
         private void Update()
         {
-            currentState?.Update(this);
+            currentState?.UpdateState(this);
         }
 
         public void ChangeState(AIState newState)
