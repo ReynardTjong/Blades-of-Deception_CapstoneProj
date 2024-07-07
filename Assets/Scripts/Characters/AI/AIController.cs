@@ -29,6 +29,7 @@ namespace BladesOfDeceptionCapstoneProject
 
         private void Update()
         {
+            agent.destination = player.position;
             currentState?.UpdateState(this);
         }
 
