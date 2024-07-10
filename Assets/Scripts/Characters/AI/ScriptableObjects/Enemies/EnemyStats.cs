@@ -7,6 +7,8 @@ namespace BladesOfDeceptionCapstoneProject
     {
         public float health; // The amount of damage the enemy can take before being defeated.
         public float damage; // The amount of damage the enemy deals to the player per attack.
+        public float walkSpeed;
+        public float runSpeed;
         public float attackSpeed; // How quickly the enemy can execute attacks.
         public float movementSpeed; // How fast the enemy moves when chasing or patrolling.
         public float detectionRange; // The distance at which the enemy can detect and begin pursuing the player.
