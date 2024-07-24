@@ -5,23 +5,61 @@ namespace BladesOfDeceptionCapstoneProject
 {
     public class AIController : MonoBehaviour
     {
-        public EnemyStats enemyStats;
-
+        public AIState currentState;
         public Transform playerTransform;
-
-        [HideInInspector]
         public NavMeshAgent agent;
+        public float detectionRange = 10.0f; // Detection range
+        public float fieldOfViewAngle = 120.0f; // Field of view angle
+
+        public AIState idleState; // Reference to IdleState
+        public AIState chaseState; // Reference to ChaseState
 
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
-            
+            if (currentState != null)
+            {
+                currentState.EnterState(this);
+            }
         }
 
         void Update()
         {
-            agent.destination = playerTransform.position;
-            
+            if (currentState != null)
+            {
+                currentState.UpdateState(this);
+            }
+        }
+
+        public void TransitionToState(AIState newState)
+        {
+            if (currentState != null)
+            {
+                currentState.ExitState(this);
+            }
+
+            currentState = newState;
+
+            if (currentState != null)
+            {
+                currentState.EnterState(this);
+            }
+        }
+
+        public bool IsPlayerInFOV()
+        {
+            Vector3 directionToPlayer = playerTransform.position - transform.position;
+            float distanceToPlayer = directionToPlayer.magnitude;
+
+            if (distanceToPlayer <= detectionRange)
+            {
+                float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
+                if (angleToPlayer <= fieldOfViewAngle / 2)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
