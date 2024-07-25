@@ -5,7 +5,7 @@ namespace BladesOfDeceptionCapstoneProject
     [CreateAssetMenu(menuName = "AI/States/IdleState")]
     public class IdleState : AIState
     {
-        public float idleDuration = 3.0f; // Time to stay idle before checking for transition
+        [SerializeField] private float idleDuration = 3.0f; // Time to stay idle before checking for transition
         private float idleTimer;
 
         public override void EnterState(AIController aiController)
