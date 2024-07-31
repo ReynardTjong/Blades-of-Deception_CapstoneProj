@@ -12,24 +12,30 @@ namespace BladesOfDeceptionCapstoneProject
         {
             idleTimer = idleDuration;
             aiController.agent.isStopped = true; // Stop the AI movement
-                                                 // Optionally play idle animation
-                                                 // aiController.animator.Play("Idle");
+            Debug.Log("IdleState: Entered, starting timer with duration: " + idleDuration);
+            // Optionally play idle animation
+            // aiController.animator.Play("Idle");
         }
 
         public override void UpdateState(AIController aiController)
         {
             idleTimer -= Time.deltaTime;
+            Debug.Log("IdleState: Idle timer: " + idleTimer);
 
             // Check for transitions (e.g., player in detection range and FOV)
             if (aiController.IsPlayerInFOV())
             {
+                Debug.Log("IdleState: Player detected, transitioning to ChaseState");
                 aiController.TransitionToState(aiController.chaseState);
+                return; // Exit to avoid further processing
             }
 
             if (idleTimer <= 0)
             {
-                // Optionally transition to a patrol state or back to Idle
-                idleTimer = idleDuration; // Reset timer if needed
+                // Transition back to PatrolState
+                Debug.Log("IdleState: Idle duration elapsed, transitioning to PatrolState");
+                aiController.TransitionToState(aiController.patrolState);
+                return; // Exit to avoid further processing
             }
         }
 
@@ -38,6 +44,7 @@ namespace BladesOfDeceptionCapstoneProject
             // Optionally stop idle animation
             // aiController.animator.Stop("Idle");
             aiController.agent.isStopped = false; // Resume movement
+            Debug.Log("IdleState: Exited");
         }
     }
 }

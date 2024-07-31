@@ -11,6 +11,7 @@ namespace BladesOfDeceptionCapstoneProject
         {
             // Setup code for entering Chase state
             aiController.agent.isStopped = false;
+            Debug.Log("ChaseState: Entered");
         }
 
         public override void UpdateState(AIController aiController)
@@ -18,14 +19,17 @@ namespace BladesOfDeceptionCapstoneProject
             if (aiController.playerTransform != null)
             {
                 float distanceToPlayer = Vector3.Distance(aiController.transform.position, aiController.playerTransform.position);
+                Debug.Log("ChaseState: Distance to player: " + distanceToPlayer);
 
                 if (distanceToPlayer <= chaseRange)
                 {
                     aiController.agent.SetDestination(aiController.playerTransform.position);
+                    Debug.Log("ChaseState: Chasing player to " + aiController.playerTransform.position);
                 }
                 else
                 {
-                    aiController.TransitionToState(aiController.idleState);
+                    Debug.Log("ChaseState: Player out of range, transitioning to PatrolState");
+                    aiController.TransitionToState(aiController.patrolState);
                 }
             }
         }
@@ -34,6 +38,7 @@ namespace BladesOfDeceptionCapstoneProject
         {
             // Cleanup code for exiting Chase state
             aiController.agent.isStopped = true;
+            Debug.Log("ChaseState: Exited");
         }
     }
 }

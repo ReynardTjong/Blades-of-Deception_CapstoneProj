@@ -19,5 +19,12 @@ namespace BladesOfDeceptionCapstoneProject
                 }
             }
         }
+
+        public Transform GetRandomWaypoint()
+        {
+            if (waypoints.Count == 0) return null;
+            int randomIndex = Random.Range(0, waypoints.Count);
+            return waypoints[randomIndex];
+        }
     }
 }

@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821e3b8beeb152247bfc79ea08e380bc, type: 3}
   m_Name: Enemy1_Patrol
   m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  patrolSpeed: 3
+  patrolSpeed: 2
+  waypointIdleTime: 7

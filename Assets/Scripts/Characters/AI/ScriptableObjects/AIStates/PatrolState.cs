@@ -7,36 +7,46 @@ namespace BladesOfDeceptionCapstoneProject
     [CreateAssetMenu(menuName = "AI/States/PatrolState")]
     public class PatrolState : AIState
     {
-        public List<Transform> patrolPoints;
-        private int currentPatrolIndex;
-
         public float patrolSpeed = 2.0f;
+        private WaypointsManager waypointsManager;
+        private Transform currentWaypoint;
 
         public override void EnterState(AIController aiController)
         {
-            if (patrolPoints.Count == 0)
+            waypointsManager = aiController.waypointsManager;
+
+            if (waypointsManager == null || waypointsManager.waypoints.Count == 0)
             {
-                Debug.LogError("No patrol points assigned!");
+                Debug.LogError("No waypoints assigned in WaypointsManager!");
                 return;
             }
 
             aiController.agent.speed = patrolSpeed;
             aiController.agent.isStopped = false;
-            currentPatrolIndex = 0;
-            aiController.agent.SetDestination(patrolPoints[currentPatrolIndex].position);
+            currentWaypoint = waypointsManager.GetRandomWaypoint();
+            aiController.agent.SetDestination(currentWaypoint.position);
+            Debug.Log("PatrolState: Entered state and set destination to " + currentWaypoint.position);
         }
 
         public override void UpdateState(AIController aiController)
         {
+            if (currentWaypoint == null)
+            {
+                Debug.LogError("No current waypoint set!");
+                return;
+            }
+
             if (aiController.agent.remainingDistance <= aiController.agent.stoppingDistance)
             {
-                currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Count;
-                aiController.agent.SetDestination(patrolPoints[currentPatrolIndex].position);
+                // Transition to IdleState when reaching the waypoint
+                Debug.Log("PatrolState: Reached waypoint, transitioning to IdleState");
+                aiController.TransitionToState(aiController.idleState);
             }
 
             // Check for player detection to transition to ChaseState
             if (aiController.IsPlayerInFOV())
             {
+                Debug.Log("PatrolState: Player detected, transitioning to ChaseState");
                 aiController.TransitionToState(aiController.chaseState);
             }
         }
@@ -44,6 +54,7 @@ namespace BladesOfDeceptionCapstoneProject
         public override void ExitState(AIController aiController)
         {
             aiController.agent.isStopped = true;
+            Debug.Log("PatrolState: Exiting state");
         }
     }
 }

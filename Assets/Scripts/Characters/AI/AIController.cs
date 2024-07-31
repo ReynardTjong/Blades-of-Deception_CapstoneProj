@@ -15,20 +15,12 @@ namespace BladesOfDeceptionCapstoneProject
         public AIState chaseState; // Reference to ChaseState
         public AIState patrolState; // Reference to PatrolState
 
-        private WaypointsManager waypointsManager;
+        public WaypointsManager waypointsManager;
 
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
-            waypointsManager = FindObjectOfType<WaypointsManager>();
-
-            // Assign waypoints to the patrol state if it's not already done
-            PatrolState patrolStateScript = patrolState as PatrolState;
-            if (patrolStateScript != null && patrolStateScript.patrolPoints.Count == 0)
-            {
-                patrolStateScript.patrolPoints = waypointsManager.waypoints;
-            }
-
+     
             if (currentState != null)
             {
                 currentState.EnterState(this);
