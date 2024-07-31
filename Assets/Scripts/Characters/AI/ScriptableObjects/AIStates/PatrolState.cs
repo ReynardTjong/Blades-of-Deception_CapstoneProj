@@ -7,7 +7,8 @@ namespace BladesOfDeceptionCapstoneProject
     [CreateAssetMenu(menuName = "AI/States/PatrolState")]
     public class PatrolState : AIState
     {
-        public float patrolSpeed = 2.0f;
+        [SerializeField] private float patrolSpeed = 2.0f;
+
         private WaypointsManager waypointsManager;
         private Transform currentWaypoint;
 

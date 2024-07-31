@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0253bb33a7bdb51438463ee4b0065d19, type: 3}
   m_Name: Enemy1_Chase
   m_EditorClassIdentifier: 
+  chaseSpeed: 2.5
   chaseRange: 10

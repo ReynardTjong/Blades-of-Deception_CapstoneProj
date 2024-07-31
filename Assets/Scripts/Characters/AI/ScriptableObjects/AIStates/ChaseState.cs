@@ -5,13 +5,15 @@ namespace BladesOfDeceptionCapstoneProject
     [CreateAssetMenu(menuName = "AI/States/ChaseState")]
     public class ChaseState : AIState
     {
+        [SerializeField] private float chaseSpeed = 4.0f; // Speed for chasing
         [SerializeField] private float chaseRange = 10.0f; // Maximum range for chasing
 
         public override void EnterState(AIController aiController)
         {
             // Setup code for entering Chase state
             aiController.agent.isStopped = false;
-            Debug.Log("ChaseState: Entered");
+            aiController.agent.speed = chaseSpeed;
+            Debug.Log("ChaseState: Entered with speed: " + chaseSpeed);
         }
 
         public override void UpdateState(AIController aiController)
