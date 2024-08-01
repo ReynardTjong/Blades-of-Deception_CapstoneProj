@@ -14,7 +14,10 @@ namespace BladesOfDeceptionCapstoneProject
         public AIState idleState; // Reference to IdleState
         public AIState chaseState; // Reference to ChaseState
         public AIState patrolState; // Reference to PatrolState
+        public AIState searchState; // Reference to SearchState
+        public AIState attackState; // Reference to AttackState
 
+        public EnemyStats enemyStats;
         public WaypointsManager waypointsManager;
 
         void Start()

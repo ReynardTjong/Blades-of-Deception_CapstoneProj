@@ -31,7 +31,7 @@ namespace BladesOfDeceptionCapstoneProject
                 else
                 {
                     Debug.Log("ChaseState: Player out of range, transitioning to PatrolState");
-                    aiController.TransitionToState(aiController.patrolState);
+                    aiController.TransitionToState(aiController.searchState);
                 }
             }
         }

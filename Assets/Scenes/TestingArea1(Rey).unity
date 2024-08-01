@@ -2651,6 +2651,7 @@ GameObject:
   - component: {fileID: 764999821}
   - component: {fileID: 764999822}
   - component: {fileID: 764999823}
+  - component: {fileID: 764999824}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2798,6 +2799,19 @@ MonoBehaviour:
   weaponHolder: {fileID: 862327045}
   weapon: {fileID: 4190680290590164048, guid: 7213e614c0abe454385993b83ac94e7d, type: 3}
   weaponSheath: {fileID: 606206086}
+--- !u!114 &764999824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764999817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bccc01c912040a44aaa97e61a8e3380e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &862327045
 GameObject:
   m_ObjectHideFlags: 0
@@ -3618,6 +3632,9 @@ MonoBehaviour:
   idleState: {fileID: 11400000, guid: bd614ac8c11d98b43b541bc984251873, type: 2}
   chaseState: {fileID: 11400000, guid: af237a38cebc014498cec106a57b5ea6, type: 2}
   patrolState: {fileID: 11400000, guid: 7e435d19f776c964d8e9953414c568d3, type: 2}
+  searchState: {fileID: 11400000, guid: 6ee72a1d7af984f408afd1490b6ba10e, type: 2}
+  attackState: {fileID: 11400000, guid: fef3b2f672ec01947af0f43290c720e1, type: 2}
+  enemyStats: {fileID: 11400000, guid: b8ecf1d6b97a3ae45a2b9f9e4a0d1a42, type: 2}
   waypointsManager: {fileID: 1730428908}
 --- !u!1 &1702619083
 GameObject:
@@ -5368,13 +5385,13 @@ LightingSettings:
   serializedVersion: 6
   m_GIWorkflowMode: 1
   m_EnableBakedLightmaps: 1
-  m_EnableRealtimeLightmaps: 0
+  m_EnableRealtimeLightmaps: 1
   m_RealtimeEnvironmentLighting: 1
   m_BounceScale: 1
   m_AlbedoBoost: 1
   m_IndirectOutputScale: 1
   m_UsingShadowmask: 1
-  m_BakeBackend: 1
+  m_BakeBackend: 2
   m_LightmapMaxSize: 1024
   m_BakeResolution: 40
   m_Padding: 2
