@@ -2784,6 +2784,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   animator: {fileID: 0}
   playerVelocity: {x: 0, y: 0, z: 0}
+  playerHealth: {fileID: 764999824}
 --- !u!114 &764999823
 MonoBehaviour:
   m_ObjectHideFlags: 0

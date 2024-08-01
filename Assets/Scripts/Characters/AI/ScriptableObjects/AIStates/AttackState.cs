@@ -26,6 +26,7 @@ namespace BladesOfDeceptionCapstoneProject
 
             // Calculate distance to the player
             float distanceToPlayer = Vector3.Distance(aiController.transform.position, aiController.playerTransform.position);
+            Debug.Log("AttackState: Distance to player: " + distanceToPlayer);
 
             // Check if the player is within attack range
             if (distanceToPlayer <= aiController.enemyStats.attackRange)
@@ -69,11 +70,11 @@ namespace BladesOfDeceptionCapstoneProject
             // aiController.animator.SetTrigger("Attack");
 
             // Deal damage to the player
-            // Assuming you have a PlayerHealth script to manage player's health
             PlayerHealth playerHealth = aiController.playerTransform.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(aiController.enemyStats.damage);
+                Debug.Log("AttackState: Player took damage, remaining health: " + playerHealth.health);
             }
             else
             {
