@@ -13,13 +13,5 @@ MonoBehaviour:
   m_Name: NormalEnemy
   m_EditorClassIdentifier: 
   health: 100
-  damage: 10
-  walkSpeed: 1
-  runSpeed: 2
-  attackSpeed: 2
-  movementSpeed: 2
-  attackRange: 3
-  armor: 0
-  aggroRadius: 0
-  attackCooldown: 2
-  defense: 1
+  damage: 2
+  attackRange: 4

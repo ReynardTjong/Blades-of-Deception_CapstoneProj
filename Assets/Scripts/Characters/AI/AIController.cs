@@ -53,6 +53,24 @@ namespace BladesOfDeceptionCapstoneProject
             }
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                Debug.Log("Player detected within attack range.");
+                TransitionToState(attackState);
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                Debug.Log("Player exited attack range.");
+                TransitionToState(chaseState);
+            }
+        }
+
         public bool IsPlayerInFOV()
         {
             Vector3 directionToPlayer = playerTransform.position - transform.position;

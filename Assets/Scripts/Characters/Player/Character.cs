@@ -45,10 +45,7 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public Animator animator;
     [HideInInspector]
-    public Vector3 playerVelocity;
-
-    public PlayerHealth playerHealth; 
-
+    public Vector3 playerVelocity; 
 
     // Start is called before the first frame update
     private void Start()
@@ -57,8 +54,6 @@ public class Character : MonoBehaviour
         animator = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
         cameraTransform = Camera.main.transform;
-
-        playerHealth = GetComponent<PlayerHealth>(); // Get the PlayerHealth component
 
         movementSM = new StateMachine();
         standing = new StandingState(this, movementSM);

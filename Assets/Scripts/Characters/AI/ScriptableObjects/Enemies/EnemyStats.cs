@@ -5,7 +5,11 @@ namespace BladesOfDeceptionCapstoneProject
     [CreateAssetMenu(fileName = "EnemyStats", menuName = "AI/Enemy Stats", order = 1)]
     public class EnemyStats : ScriptableObject
     {
-        public float health; // The amount of damage the enemy can take before being defeated.
+        public float health;
+        public float damage;
+        public float attackRange;
+
+        /*public float health; // The amount of damage the enemy can take before being defeated.
         public float damage; // The amount of damage the enemy deals to the player per attack.
         public float walkSpeed;
         public float runSpeed;
@@ -16,7 +20,6 @@ namespace BladesOfDeceptionCapstoneProject
         public float aggroRadius; // The radius within which the enemy will become aggressive towards the player.
         public float attackCooldown; // The time between consecutive attacks.
         public float defense; // This represents evasion or block chances.
-
-
+        */
     }
 }
