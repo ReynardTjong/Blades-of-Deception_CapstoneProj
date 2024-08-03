@@ -8,6 +8,7 @@ namespace BladesOfDeceptionCapstoneProject
         public float health;
         public float damage;
         public float attackRange;
+        public float attackCooldown;
 
         /*public float health; // The amount of damage the enemy can take before being defeated.
         public float damage; // The amount of damage the enemy deals to the player per attack.

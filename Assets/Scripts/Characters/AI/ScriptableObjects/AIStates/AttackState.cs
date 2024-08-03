@@ -6,9 +6,12 @@ namespace BladesOfDeceptionCapstoneProject
     [CreateAssetMenu(menuName = "AI/States/AttackState")]
     public class AttackState : AIState
     {
+        private float attackCooldownTimer;
+
         public override void EnterState(AIController aiController)
         {
             aiController.agent.isStopped = true;
+            attackCooldownTimer = 0f;
             Debug.Log("AttackState: Entered");
         }
 
@@ -29,7 +32,15 @@ namespace BladesOfDeceptionCapstoneProject
 
             if (distanceToPlayer <= attackRange)
             {
-                PerformAttack(aiController);
+                if (attackCooldownTimer <= 0f)
+                {
+                    PerformAttack(aiController);
+                }
+                else
+                {
+                    // Decrease the cooldown timer
+                    attackCooldownTimer -= Time.deltaTime;
+                }
             }
             else
             {
@@ -45,7 +56,10 @@ namespace BladesOfDeceptionCapstoneProject
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(aiController.enemyStats.damage);
-                Debug.Log("AttackState: Player took damage, remaining health: " + playerHealth.health);
+                Debug.Log("AttackState: Player took damage, remaining health: " + playerHealth.CurrentHealth);
+
+                // Reset attack cooldown timer
+                attackCooldownTimer = aiController.enemyStats.attackCooldown;
             }
             else
             {
