@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9657760c0d246a34ead19b9abd5b1355, type: 3}
-  m_Name: Enemy1_Search
+  m_Name: Enemy_Search
   m_EditorClassIdentifier: 
   searchRadius: 5
   searchDuration: 10

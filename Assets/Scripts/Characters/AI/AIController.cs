@@ -9,8 +9,8 @@ namespace BladesOfDeceptionCapstoneProject
         public Transform playerTransform;
         public NavMeshAgent agent;
         public Animator animator; // Add Animator reference
-        public float detectionRange = 10.0f; // Detection range
-        public float fieldOfViewAngle = 120.0f; // Field of view angle
+        [SerializeField] private float detectionRange = 10.0f; // Detection range
+        [SerializeField] private float fieldOfViewAngle = 120.0f; // Field of view angle
 
         public AIState idleState; // Reference to IdleState
         public AIState chaseState; // Reference to ChaseState
@@ -19,6 +19,7 @@ namespace BladesOfDeceptionCapstoneProject
         public AIState attackState; // Reference to AttackState
 
         public EnemyStats enemyStats;
+        [HideInInspector] public BossStats bossStats;
         public WaypointsManager waypointsManager;
 
         void Start()
@@ -30,6 +31,8 @@ namespace BladesOfDeceptionCapstoneProject
             {
                 currentState.EnterState(this);
             }
+
+            ApplyStats();
         }
 
         void Update()
@@ -37,6 +40,20 @@ namespace BladesOfDeceptionCapstoneProject
             if (currentState != null)
             {
                 currentState.UpdateState(this);
+            }
+        }
+
+        void ApplyStats()
+        {
+            if (bossStats != null)
+            {
+                agent.speed = bossStats.movementSpeed;
+                // Apply other boss stats as needed
+            }
+            else
+            {
+                agent.speed = enemyStats.movementSpeed;
+                // Apply other enemy stats as needed
             }
         }
 
