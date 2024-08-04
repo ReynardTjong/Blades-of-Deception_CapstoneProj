@@ -23,12 +23,11 @@ namespace BladesOfDeceptionCapstoneProject
                 return;
             }
 
-            // Calculate distance to the player
             float distanceToPlayer = Vector3.Distance(aiController.transform.position, aiController.playerTransform.position);
             Debug.Log("AttackState: Distance to player: " + distanceToPlayer);
 
-            // Check if the player is within attack range
-            float attackRange = aiController.enemyStats.attackRange;
+            float attackRange = aiController.bossStats != null ? aiController.bossStats.attackRange : aiController.enemyStats.attackRange;
+            float attackCooldown = aiController.bossStats != null ? aiController.bossStats.attackCooldown : aiController.enemyStats.attackCooldown;
 
             if (distanceToPlayer <= attackRange && IsPlayerInFront(aiController))
             {
@@ -38,7 +37,6 @@ namespace BladesOfDeceptionCapstoneProject
                 }
                 else
                 {
-                    // Decrease the cooldown timer
                     attackCooldownTimer -= Time.deltaTime;
                 }
             }
@@ -50,16 +48,16 @@ namespace BladesOfDeceptionCapstoneProject
 
         private void PerformAttack(AIController aiController)
         {
-            Debug.Log("AttackState: Attacking player, dealing " + aiController.enemyStats.damage + " damage");
+            Debug.Log("AttackState: Attacking player");
 
             PlayerHealth playerHealth = aiController.playerTransform.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(aiController.enemyStats.damage);
+                float damage = aiController.bossStats != null ? aiController.bossStats.damage : aiController.enemyStats.damage;
+                playerHealth.TakeDamage(damage);
                 Debug.Log("AttackState: Player took damage, remaining health: " + playerHealth.CurrentHealth);
 
-                // Reset attack cooldown timer
-                attackCooldownTimer = aiController.enemyStats.attackCooldown;
+                attackCooldownTimer = aiController.bossStats != null ? aiController.bossStats.attackCooldown : aiController.enemyStats.attackCooldown;
             }
             else
             {
