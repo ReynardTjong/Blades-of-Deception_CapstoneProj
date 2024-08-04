@@ -27,6 +27,8 @@ namespace BladesOfDeceptionCapstoneProject
             currentWaypoint = waypointsManager.GetRandomWaypoint();
             aiController.agent.SetDestination(currentWaypoint.position);
             Debug.Log("PatrolState: Entered state and set destination to " + currentWaypoint.position);
+
+
         }
 
         public override void UpdateState(AIController aiController)
@@ -37,9 +39,11 @@ namespace BladesOfDeceptionCapstoneProject
                 return;
             }
 
-            if (aiController.agent.remainingDistance <= aiController.agent.stoppingDistance)
+            if (!aiController.agent.pathPending && aiController.agent.remainingDistance <= aiController.agent.stoppingDistance)
             {
-                // Transition to IdleState when reaching the waypoint
+                // Ensure the agent has stopped moving
+                aiController.agent.isStopped = true;
+                aiController.agent.ResetPath();
                 Debug.Log("PatrolState: Reached waypoint, transitioning to IdleState");
                 aiController.TransitionToState(aiController.idleState);
             }

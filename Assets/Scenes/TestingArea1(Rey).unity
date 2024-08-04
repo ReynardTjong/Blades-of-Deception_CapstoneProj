@@ -3726,6 +3726,7 @@ MonoBehaviour:
   currentState: {fileID: 11400000, guid: 7e435d19f776c964d8e9953414c568d3, type: 2}
   playerTransform: {fileID: 764999818}
   agent: {fileID: 1702022133}
+  animator: {fileID: 0}
   detectionRange: 8
   fieldOfViewAngle: 120
   idleState: {fileID: 11400000, guid: bd614ac8c11d98b43b541bc984251873, type: 2}
@@ -5453,6 +5454,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 12241324afc8d1145a7dc34ce78670eb,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 81212b7e17b636242875ab680c97c19b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

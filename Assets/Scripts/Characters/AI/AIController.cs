@@ -8,6 +8,7 @@ namespace BladesOfDeceptionCapstoneProject
         public AIState currentState;
         public Transform playerTransform;
         public NavMeshAgent agent;
+        public Animator animator; // Add Animator reference
         public float detectionRange = 10.0f; // Detection range
         public float fieldOfViewAngle = 120.0f; // Field of view angle
 
@@ -23,7 +24,8 @@ namespace BladesOfDeceptionCapstoneProject
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
-     
+            animator = GetComponent<Animator>();
+
             if (currentState != null)
             {
                 currentState.EnterState(this);

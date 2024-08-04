@@ -30,7 +30,7 @@ namespace BladesOfDeceptionCapstoneProject
             // Check if the player is within attack range
             float attackRange = aiController.enemyStats.attackRange;
 
-            if (distanceToPlayer <= attackRange)
+            if (distanceToPlayer <= attackRange && IsPlayerInFront(aiController))
             {
                 if (attackCooldownTimer <= 0f)
                 {
@@ -65,6 +65,15 @@ namespace BladesOfDeceptionCapstoneProject
             {
                 Debug.LogError("AttackState: PlayerHealth component not found on player");
             }
+        }
+
+        private bool IsPlayerInFront(AIController aiController)
+        {
+            Vector3 directionToPlayer = (aiController.playerTransform.position - aiController.transform.position).normalized;
+            float dotProduct = Vector3.Dot(aiController.transform.forward, directionToPlayer);
+
+            // Check if the player is within a 90-degree cone in front of the enemy
+            return dotProduct > Mathf.Cos(90f * Mathf.Deg2Rad / 2f);
         }
 
         public override void ExitState(AIController aiController)
