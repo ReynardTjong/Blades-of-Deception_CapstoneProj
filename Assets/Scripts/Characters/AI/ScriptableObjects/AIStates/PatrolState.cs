@@ -28,7 +28,7 @@ namespace BladesOfDeceptionCapstoneProject
             aiController.agent.SetDestination(currentWaypoint.position);
             Debug.Log("PatrolState: Entered state and set destination to " + currentWaypoint.position);
 
-
+            aiController.animator.CrossFade("Walk", 0.1f);
         }
 
         public override void UpdateState(AIController aiController)

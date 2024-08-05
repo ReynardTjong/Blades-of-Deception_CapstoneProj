@@ -344,6 +344,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 12241324afc8d1145a7dc34ce78670eb,
         type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 81212b7e17b636242875ab680c97c19b, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 12241324afc8d1145a7dc34ce78670eb,
+        type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
@@ -395,7 +400,7 @@ MonoBehaviour:
   currentState: {fileID: 11400000, guid: 89be89bc4fe1a1d42ad3639f3275b39c, type: 2}
   playerTransform: {fileID: 764999818}
   agent: {fileID: 74761785}
-  animator: {fileID: 0}
+  animator: {fileID: 74761788}
   detectionRange: 10
   fieldOfViewAngle: 120
   idleState: {fileID: 11400000, guid: 91aabca43f7d7f94eb27f38d4f0dfb12, type: 2}
@@ -478,6 +483,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!95 &74761788 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 12241324afc8d1145a7dc34ce78670eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 74761781}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &122165829
 Mesh:
   m_ObjectHideFlags: 0
@@ -3891,6 +3902,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 12241324afc8d1145a7dc34ce78670eb,
         type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 81212b7e17b636242875ab680c97c19b, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 12241324afc8d1145a7dc34ce78670eb,
+        type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
@@ -6022,7 +6038,7 @@ MonoBehaviour:
   currentState: {fileID: 11400000, guid: 89be89bc4fe1a1d42ad3639f3275b39c, type: 2}
   playerTransform: {fileID: 764999818}
   agent: {fileID: 1715875453}
-  animator: {fileID: 0}
+  animator: {fileID: 1715875454}
   detectionRange: 10
   fieldOfViewAngle: 120
   idleState: {fileID: 11400000, guid: 91aabca43f7d7f94eb27f38d4f0dfb12, type: 2}
@@ -6055,6 +6071,12 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &1715875454 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 12241324afc8d1145a7dc34ce78670eb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1296875090}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1730428906
 GameObject:
   m_ObjectHideFlags: 0

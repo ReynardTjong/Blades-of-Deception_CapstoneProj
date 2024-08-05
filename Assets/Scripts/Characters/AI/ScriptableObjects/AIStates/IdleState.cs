@@ -14,7 +14,7 @@ namespace BladesOfDeceptionCapstoneProject
             aiController.agent.isStopped = true; // Stop the AI movement
             Debug.Log("IdleState: Entered, starting timer with duration: " + idleDuration);
 
-
+            aiController.animator.CrossFade("Idle", 0.1f);
         }
 
         public override void UpdateState(AIController aiController)
