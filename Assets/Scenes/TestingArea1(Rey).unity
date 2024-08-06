@@ -3343,23 +3343,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
-  crouchSpeed: 2
-  sprintSpeed: 7
-  jumpHeight: 0.8
   gravityMultiplier: 2
   rotationSpeed: 5
-  crouchColliderHeight: 1.35
-  speedDampTime: 0.1
   velocityDampTime: 0.1
   rotationDampTime: 0.2
-  airControl: 0.5
-  gravityValue: -9.81
-  normalColliderHeight: 0
+  standingState: {fileID: 11400000, guid: 987ff9a2337484f4c9386d9715e9e455, type: 2}
   controller: {fileID: 0}
   playerInput: {fileID: 0}
   cameraTransform: {fileID: 0}
   animator: {fileID: 0}
-  playerVelocity: {x: 0, y: 0, z: 0}
+  gravityValue: -9.81
 --- !u!114 &764999823
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,15 +24,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "0acf8b75-571e-4445-95a8-ffca813d22eb",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Crouch",
                     "type": "Button",
                     "id": "8f60e0aa-cc60-4cb5-990e-d885b9563496",
@@ -133,17 +124,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "712ea240-efe4-4ee8-9d3f-58f1604089d0",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

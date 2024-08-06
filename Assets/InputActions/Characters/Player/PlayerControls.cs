@@ -46,15 +46,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""0acf8b75-571e-4445-95a8-ffca813d22eb"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""8f60e0aa-cc60-4cb5-990e-d885b9563496"",
@@ -160,17 +151,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""712ea240-efe4-4ee8-9d3f-58f1604089d0"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""60620791-ec1c-4341-90eb-4aacfe406209"",
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": ""Tap"",
@@ -222,7 +202,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_DrawWeapon = m_Player.FindAction("DrawWeapon", throwIfNotFound: true);
@@ -290,7 +269,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_DrawWeapon;
@@ -301,7 +279,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @DrawWeapon => m_Wrapper.m_Player_DrawWeapon;
@@ -321,9 +298,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
@@ -346,9 +320,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
@@ -382,7 +353,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnDrawWeapon(InputAction.CallbackContext context);

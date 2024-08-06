@@ -1,130 +1,82 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class StandingState : State
+namespace BladesOfDeceptionCapstoneProject
 {
-
-    float gravityValue;
-    bool jump;
-    bool crouch;
-    Vector3 currentVelocity;
-    bool grounded;
-    bool sprint;
-    float playerSpeed;
-    bool drawWeapon;
-
-    Vector3 cVelocity;
-
-    public StandingState(Character _character, StateMachine _stateMachine) : base(_character, _stateMachine)
+    [CreateAssetMenu(menuName = "PlayerStates/StandingState")]
+    public class StandingState : PlayerState
     {
-        character = _character;
-        stateMachine = _stateMachine;
-    }
+        private Vector3 gravityVelocity;
+        private Vector3 currentVelocity;
+        private Vector3 cVelocity;
+        private Vector3 velocity;
+        private Vector2 input;
+        private float playerSpeed;
+        private float gravityValue;
+        private bool grounded;
 
-    public override void Enter()
-    {
-        base.Enter();
-
-        jump = false;
-        crouch = false;
-        sprint = false;
-        input = Vector2.zero;
-        velocity = Vector3.zero;
-        currentVelocity = Vector3.zero;
-        gravityVelocity.y = 0;
-
-        playerSpeed = character.playerSpeed;
-        grounded = character.controller.isGrounded;
-        gravityValue = character.gravityValue;
-    }
-
-    public override void HandleInput()
-    {
-        base.HandleInput();
-
-        if (jumpAction.triggered)
+        public override void EnterState(Character character)
         {
-            jump = true;
-        }
-        if (crouchAction.triggered)
-        {
-            crouch = true;
-        }
-        if (sprintAction.triggered)
-        {
-            sprint = true;
-        }
-        if (drawWeaponAction.triggered)
-        {
-            drawWeapon = true;
+            Debug.Log("Entered Standing State");
+
+            // Initialize variables
+            input = Vector2.zero;
+            currentVelocity = Vector3.zero;
+            gravityVelocity.y = 0;
+            playerSpeed = character.playerSpeed;
+            grounded = character.controller.isGrounded;
+            gravityValue = character.gravityValue;
+
+            // Initialize input actions
+            InitializeInputActions(character.playerInput);
         }
 
-        input = moveAction.ReadValue<Vector2>();
-        velocity = new Vector3(input.x, 0, input.y);
-
-        velocity = velocity.x * character.cameraTransform.right.normalized + velocity.z * character.cameraTransform.forward.normalized;
-        velocity.y = 0f;
-
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-
-        character.animator.SetFloat("speed", input.magnitude, character.speedDampTime, Time.deltaTime);
-
-        if (sprint)
+        public override void UpdateState(Character character)
         {
-            stateMachine.ChangeState(character.sprinting);
-        }
-        if (jump)
-        {
-            stateMachine.ChangeState(character.jumping);
-        }
-        if (crouch)
-        {
-            stateMachine.ChangeState(character.crouching);
-        }
-        if (drawWeapon)
-        {
-            stateMachine.ChangeState(character.combatting);
-            character.animator.SetTrigger("drawWeapon");
+            HandleInput(character);
+            HandleMovement(character);
         }
 
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-
-        gravityVelocity.y += gravityValue * Time.deltaTime;
-        grounded = character.controller.isGrounded;
-
-        if (grounded && gravityVelocity.y < 0)
+        private void HandleInput(Character character)
         {
+            // Read movement input
+            input = moveAction.ReadValue<Vector2>();
+            velocity = new Vector3(input.x, 0, input.y);
+
+            // Convert input direction to world direction
+            velocity = velocity.x * character.cameraTransform.right.normalized + velocity.z * character.cameraTransform.forward.normalized;
+            velocity.y = 0f;
+        }
+
+        private void HandleMovement(Character character)
+        {
+            // Apply gravity
+            gravityVelocity.y += gravityValue * Time.deltaTime;
+            grounded = character.controller.isGrounded;
+
+            if (grounded && gravityVelocity.y < 0)
+            {
+                gravityVelocity.y = 0f;
+            }
+
+            // Smooth movement
+            currentVelocity = Vector3.SmoothDamp(currentVelocity, velocity, ref cVelocity, character.velocityDampTime);
+            character.controller.Move(currentVelocity * Time.deltaTime * playerSpeed + gravityVelocity * Time.deltaTime);
+
+            // Rotate character towards movement direction
+            if (velocity.sqrMagnitude > 0)
+            {
+                character.transform.rotation = Quaternion.Slerp(character.transform.rotation, Quaternion.LookRotation(velocity), character.rotationDampTime);
+            }
+        }
+
+        public override void ExitState(Character character)
+        {
+            Debug.Log("Exited Standing State");
+
+            // Reset gravity velocity
             gravityVelocity.y = 0f;
         }
-
-        currentVelocity = Vector3.SmoothDamp(currentVelocity, velocity, ref cVelocity, character.velocityDampTime);
-        character.controller.Move(currentVelocity * Time.deltaTime * playerSpeed + gravityVelocity * Time.deltaTime);
-
-        if (velocity.sqrMagnitude > 0)
-        {
-            character.transform.rotation = Quaternion.Slerp(character.transform.rotation, Quaternion.LookRotation(velocity), character.rotationDampTime);
-        }
-
     }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        gravityVelocity.y = 0f;
-        character.playerVelocity = new Vector3(input.x, 0, input.y);
-
-        if (velocity.sqrMagnitude > 0)
-        {
-            character.transform.rotation = Quaternion.LookRotation(velocity);
-        }
-    }
-
 }
