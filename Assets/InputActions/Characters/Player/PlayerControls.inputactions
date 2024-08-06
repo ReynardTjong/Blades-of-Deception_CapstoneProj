@@ -24,18 +24,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Crouch",
+                    "name": "Sprint",
                     "type": "Button",
-                    "id": "8f60e0aa-cc60-4cb5-990e-d885b9563496",
+                    "id": "35d46cd3-54f9-4b9d-9f58-f5999ae1e142",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sprint",
+                    "name": "Crouch",
                     "type": "Button",
-                    "id": "35d46cd3-54f9-4b9d-9f58-f5999ae1e142",
+                    "id": "8f60e0aa-cc60-4cb5-990e-d885b9563496",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press",
@@ -129,17 +129,6 @@
                 },
                 {
                     "name": "",
-                    "id": "60620791-ec1c-4341-90eb-4aacfe406209",
-                    "path": "<Keyboard>/c",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c15feac8-f796-46e6-8196-966c7604e59a",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
@@ -168,6 +157,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "60620791-ec1c-4341-90eb-4aacfe406209",
+                    "path": "<Keyboard>/c",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

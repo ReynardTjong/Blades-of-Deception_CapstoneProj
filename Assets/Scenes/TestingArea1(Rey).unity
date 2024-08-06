@@ -3343,11 +3343,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
+  sprintSpeed: 8
   gravityMultiplier: 2
   rotationSpeed: 5
   velocityDampTime: 0.1
   rotationDampTime: 0.2
   standingState: {fileID: 11400000, guid: 987ff9a2337484f4c9386d9715e9e455, type: 2}
+  sprintState: {fileID: 11400000, guid: e963326fc0cd3b140864cb172fcbd46f, type: 2}
   controller: {fileID: 0}
   playerInput: {fileID: 0}
   cameraTransform: {fileID: 0}

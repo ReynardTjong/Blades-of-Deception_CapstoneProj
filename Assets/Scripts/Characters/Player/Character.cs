@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
 {
     [Header("Controls")]
     public float playerSpeed = 5.0f;
+    public float sprintSpeed = 8.0f;
     public float gravityMultiplier = 2;
     public float rotationSpeed = 5f;
 
@@ -16,6 +17,7 @@ public class Character : MonoBehaviour
     public float rotationDampTime = 0.2f;
 
     public PlayerState standingState;
+    public PlayerState sprintState;
 
     [HideInInspector]
     public CharacterController controller;
@@ -28,19 +30,22 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public float gravityValue = -9.81f;
 
-    private StateMachine stateMachine;
+    public StateMachine stateMachine;
 
-    private void Start()
+    private void Awake()
     {
+        // Initialize components here to avoid redundant calls in Start
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
         cameraTransform = Camera.main.transform;
+    }
 
+    private void Start()
+    {
         stateMachine = new StateMachine();
 
-        // Initialize and set the starting state to StandingState
-        standingState = ScriptableObject.CreateInstance<StandingState>();
+        // Ensure these states are assigned in the Inspector or initialized properly
         stateMachine.Initialize(standingState, this);
     }
 
@@ -49,15 +54,8 @@ public class Character : MonoBehaviour
         stateMachine.currentState.UpdateState(this);
     }
 
-    // Additional states can be initialized and used as needed
-    // public PlayerState jumpingState;
-    // public PlayerState crouchingState;
-    // public PlayerState sprintingState;
-    // public PlayerState combattingState;
-
     public void ChangeState(PlayerState newState)
     {
-        // Change to a new state
         stateMachine.ChangeState(newState, this);
     }
 }

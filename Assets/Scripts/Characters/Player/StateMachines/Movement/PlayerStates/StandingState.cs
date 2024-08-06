@@ -14,7 +14,6 @@ namespace BladesOfDeceptionCapstoneProject
         private Vector2 input;
         private float playerSpeed;
         private float gravityValue;
-        private bool grounded;
 
         public override void EnterState(Character character)
         {
@@ -25,10 +24,12 @@ namespace BladesOfDeceptionCapstoneProject
             currentVelocity = Vector3.zero;
             gravityVelocity.y = 0;
             playerSpeed = character.playerSpeed;
-            grounded = character.controller.isGrounded;
             gravityValue = character.gravityValue;
 
-            // Initialize input actions
+            // Reset animation parameters for standing
+            character.animator.SetFloat("speed", 0f);
+
+            // Initialize input actions only once here
             InitializeInputActions(character.playerInput);
         }
 
@@ -36,46 +37,47 @@ namespace BladesOfDeceptionCapstoneProject
         {
             HandleInput(character);
             HandleMovement(character);
+            UpdateAnimation(character);
         }
 
         private void HandleInput(Character character)
         {
-            // Read movement input
             input = moveAction.ReadValue<Vector2>();
             velocity = new Vector3(input.x, 0, input.y);
+            velocity = Vector3.ProjectOnPlane(character.cameraTransform.right * velocity.x + character.cameraTransform.forward * velocity.z, Vector3.up);
 
-            // Convert input direction to world direction
-            velocity = velocity.x * character.cameraTransform.right.normalized + velocity.z * character.cameraTransform.forward.normalized;
-            velocity.y = 0f;
+            if (sprintAction.triggered)
+            {
+                character.ChangeState(character.sprintState);
+            }
         }
 
         private void HandleMovement(Character character)
         {
-            // Apply gravity
-            gravityVelocity.y += gravityValue * Time.deltaTime;
-            grounded = character.controller.isGrounded;
-
-            if (grounded && gravityVelocity.y < 0)
+            gravityVelocity.y += character.gravityValue * Time.deltaTime;
+            if (character.controller.isGrounded && gravityVelocity.y < 0)
             {
                 gravityVelocity.y = 0f;
             }
 
-            // Smooth movement
             currentVelocity = Vector3.SmoothDamp(currentVelocity, velocity, ref cVelocity, character.velocityDampTime);
             character.controller.Move(currentVelocity * Time.deltaTime * playerSpeed + gravityVelocity * Time.deltaTime);
 
-            // Rotate character towards movement direction
             if (velocity.sqrMagnitude > 0)
             {
                 character.transform.rotation = Quaternion.Slerp(character.transform.rotation, Quaternion.LookRotation(velocity), character.rotationDampTime);
             }
         }
 
+        private void UpdateAnimation(Character character)
+        {
+            float speed = input.magnitude;
+            character.animator.SetFloat("speed", speed);
+        }
+
         public override void ExitState(Character character)
         {
             Debug.Log("Exited Standing State");
-
-            // Reset gravity velocity
             gravityVelocity.y = 0f;
         }
     }
