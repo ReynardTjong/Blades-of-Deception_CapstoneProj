@@ -18,6 +18,8 @@ public class Character : MonoBehaviour
 
     public PlayerState standingState;
     public PlayerState sprintState;
+    public PlayerState combatState;
+    public PlayerState attackingState;
 
     [HideInInspector]
     public CharacterController controller;

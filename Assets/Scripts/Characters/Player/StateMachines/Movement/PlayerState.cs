@@ -9,7 +9,6 @@ namespace BladesOfDeceptionCapstoneProject
     {
         protected InputAction moveAction;
         protected InputAction lookAction;
-        protected InputAction crouchAction;
         protected InputAction sprintAction;
         protected InputAction drawWeaponAction;
         protected InputAction attackAction;
@@ -19,7 +18,6 @@ namespace BladesOfDeceptionCapstoneProject
         {
             moveAction = playerInput.actions["Move"];
             lookAction = playerInput.actions["Look"];
-            crouchAction = playerInput.actions["Crouch"];
             sprintAction = playerInput.actions["Sprint"];
             drawWeaponAction = playerInput.actions["DrawWeapon"];
             attackAction = playerInput.actions["Attack"];

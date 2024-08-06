@@ -33,15 +33,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Crouch",
-                    "type": "Button",
-                    "id": "8f60e0aa-cc60-4cb5-990e-d885b9563496",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "DrawWeapon",
                     "type": "Button",
                     "id": "fe79dfec-6474-4371-96eb-b1aa585be394",
@@ -157,17 +148,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "60620791-ec1c-4341-90eb-4aacfe406209",
-                    "path": "<Keyboard>/c",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
