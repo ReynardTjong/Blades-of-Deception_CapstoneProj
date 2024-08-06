@@ -6,21 +6,28 @@ public class Character : MonoBehaviour
 {
     [Header("Controls")]
     public float playerSpeed = 5.0f;
-    public float sprintSpeed = 8.0f;
+    public float sprintSpeed = 7.0f;
     public float gravityMultiplier = 2;
     public float rotationSpeed = 5f;
 
     [Header("Animation Smoothing")]
     [Range(0, 1)]
+    public float speedDampTime = 0.1f;
+    [Range(0, 1)]
     public float velocityDampTime = 0.9f;
     [Range(0, 1)]
     public float rotationDampTime = 0.2f;
 
-    public PlayerState standingState;
-    public PlayerState sprintState;
-    public PlayerState combatState;
-    public PlayerState attackingState;
+    public StateMachine movementSM;
+    public StandingState standing;
+    public SprintState sprinting;
+    public CombatState combatting;
+    //public AttackingState attacking;
 
+    [HideInInspector]
+    public float gravityValue = -9.81f;
+    [HideInInspector]
+    public float normalColliderHeight;
     [HideInInspector]
     public CharacterController controller;
     [HideInInspector]
@@ -30,34 +37,38 @@ public class Character : MonoBehaviour
     [HideInInspector]
     public Animator animator;
     [HideInInspector]
-    public float gravityValue = -9.81f;
+    public Vector3 playerVelocity;
 
-    public StateMachine stateMachine;
 
-    private void Awake()
+    // Start is called before the first frame update
+    private void Start()
     {
-        // Initialize components here to avoid redundant calls in Start
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
         cameraTransform = Camera.main.transform;
-    }
 
-    private void Start()
-    {
-        stateMachine = new StateMachine();
+        movementSM = new StateMachine();
+        standing = new StandingState(this, movementSM);
+        sprinting = new SprintState(this, movementSM);
+        combatting = new CombatState(this, movementSM);
+        //attacking = new AttackState(this, movementSM);
 
-        // Ensure these states are assigned in the Inspector or initialized properly
-        stateMachine.Initialize(standingState, this);
+        movementSM.Initialize(standing);
+
+        normalColliderHeight = controller.height;
+        gravityValue *= gravityMultiplier;
     }
 
     private void Update()
     {
-        stateMachine.currentState.UpdateState(this);
+        movementSM.currentState.HandleInput();
+
+        movementSM.currentState.LogicUpdate();
     }
 
-    public void ChangeState(PlayerState newState)
+    private void FixedUpdate()
     {
-        stateMachine.ChangeState(newState, this);
+        movementSM.currentState.PhysicsUpdate();
     }
 }

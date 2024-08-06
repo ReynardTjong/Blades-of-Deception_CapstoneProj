@@ -4,58 +4,87 @@ using UnityEngine;
 
 namespace BladesOfDeceptionCapstoneProject
 {
-    [CreateAssetMenu(menuName = "PlayerStates/StandingState")]
-    public class StandingState : PlayerState
+    public class StandingState : State
     {
-        private Vector3 gravityVelocity;
-        private Vector3 currentVelocity;
-        private Vector3 cVelocity;
-        private Vector3 velocity;
-        private Vector2 input;
-        private float playerSpeed;
-        private float gravityValue;
+        float gravityValue;
+        Vector3 currentVelocity;
+        bool grounded;
+        bool sprint;
+        float playerSpeed;
+        bool drawWeapon;
 
-        public override void EnterState(Character character)
+        Vector3 cVelocity;
+
+        public StandingState(Character _character, StateMachine _stateMachine) : base(_character, _stateMachine)
         {
-            Debug.Log("Entered Standing State");
+            character = _character;
+            stateMachine = _stateMachine;
+        }
 
-            // Initialize variables
+        public override void Enter()
+        {
+            base.Enter();
+
+            sprint = false;
+            drawWeapon = false;
             input = Vector2.zero;
+
             currentVelocity = Vector3.zero;
             gravityVelocity.y = 0;
+
+            velocity = character.playerVelocity;
             playerSpeed = character.playerSpeed;
+            grounded = character.controller.isGrounded;
             gravityValue = character.gravityValue;
-
-            // Reset animation parameters for standing
-            character.animator.SetFloat("speed", 0f);
-
-            // Initialize input actions only once here
-            InitializeInputActions(character.playerInput);
         }
 
-        public override void UpdateState(Character character)
+        public override void HandleInput()
         {
-            HandleInput(character);
-            HandleMovement(character);
-            UpdateAnimation(character);
-        }
-
-        private void HandleInput(Character character)
-        {
-            input = moveAction.ReadValue<Vector2>();
-            velocity = new Vector3(input.x, 0, input.y);
-            velocity = Vector3.ProjectOnPlane(character.cameraTransform.right * velocity.x + character.cameraTransform.forward * velocity.z, Vector3.up);
+            base.HandleInput();
 
             if (sprintAction.triggered)
             {
-                character.ChangeState(character.sprintState);
+                sprint = true;
+            }
+
+            if (drawWeaponAction.triggered)
+            {
+                drawWeapon = true;
+            }
+
+            input = moveAction.ReadValue<Vector2>();
+            velocity = new Vector3(input.x, 0, input.y);
+
+            velocity = velocity.x * character.cameraTransform.right.normalized + velocity.z * character.cameraTransform.forward.normalized;
+            velocity.y = 0f;
+
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+
+            character.animator.SetFloat("speed", input.magnitude, character.speedDampTime, Time.deltaTime);
+
+            if (sprint)
+            {
+                stateMachine.ChangeState(character.sprinting);
+            }
+            if (drawWeapon)
+            {
+                stateMachine.ChangeState(character.combatting);
+                character.animator.SetTrigger("drawWeapon");
             }
         }
 
-        private void HandleMovement(Character character)
+        public override void PhysicsUpdate()
         {
-            gravityVelocity.y += character.gravityValue * Time.deltaTime;
-            if (character.controller.isGrounded && gravityVelocity.y < 0)
+            base.PhysicsUpdate();
+
+            gravityVelocity.y += gravityValue * Time.deltaTime;
+            grounded = character.controller.isGrounded;
+
+            if (grounded && gravityVelocity.y < 0)
             {
                 gravityVelocity.y = 0f;
             }
@@ -67,18 +96,20 @@ namespace BladesOfDeceptionCapstoneProject
             {
                 character.transform.rotation = Quaternion.Slerp(character.transform.rotation, Quaternion.LookRotation(velocity), character.rotationDampTime);
             }
+
         }
 
-        private void UpdateAnimation(Character character)
+        public override void Exit()
         {
-            float speed = input.magnitude;
-            character.animator.SetFloat("speed", speed);
-        }
+            base.Exit();
 
-        public override void ExitState(Character character)
-        {
-            Debug.Log("Exited Standing State");
             gravityVelocity.y = 0f;
+            character.playerVelocity = new Vector3(input.x, 0, input.y);
+
+            if (velocity.sqrMagnitude > 0)
+            {
+                character.transform.rotation = Quaternion.LookRotation(velocity);
+            }
         }
     }
 }

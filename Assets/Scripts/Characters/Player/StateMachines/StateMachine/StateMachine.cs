@@ -2,20 +2,19 @@ using BladesOfDeceptionCapstoneProject;
 
 public class StateMachine
 {
-    public PlayerState currentState;
+    public State currentState;
 
-    // Initialize the state machine with a starting state
-    public void Initialize(PlayerState startingState, Character character)
+    public void Initialize(State startingState)
     {
         currentState = startingState;
-        startingState.EnterState(character);
+        startingState.Enter();
     }
 
-    // Change to a new state
-    public void ChangeState(PlayerState newState, Character character)
+    public void ChangeState(State newState)
     {
-        currentState.ExitState(character);
+        currentState.Exit();
+
         currentState = newState;
-        newState.EnterState(character);
+        newState.Enter();
     }
 }

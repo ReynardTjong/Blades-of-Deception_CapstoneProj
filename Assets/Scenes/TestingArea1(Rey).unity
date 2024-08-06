@@ -3346,17 +3346,16 @@ MonoBehaviour:
   sprintSpeed: 8
   gravityMultiplier: 2
   rotationSpeed: 5
+  speedDampTime: 0.1
   velocityDampTime: 0.1
   rotationDampTime: 0.2
-  standingState: {fileID: 11400000, guid: 987ff9a2337484f4c9386d9715e9e455, type: 2}
-  sprintState: {fileID: 11400000, guid: e963326fc0cd3b140864cb172fcbd46f, type: 2}
-  combatState: {fileID: 11400000, guid: 9eba89be1bfe02a4c884346d88a0a33a, type: 2}
-  attackingState: {fileID: 0}
+  gravityValue: -9.81
+  normalColliderHeight: 0
   controller: {fileID: 0}
   playerInput: {fileID: 0}
   cameraTransform: {fileID: 0}
   animator: {fileID: 0}
-  gravityValue: -9.81
+  playerVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &764999823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3902,12 +3901,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1bd3bdae98c03b542ba68d151f72521a,
         type: 3}
       propertyPath: m_Name
-      value: katana_unity 1
+      value: Katana
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1bd3bdae98c03b542ba68d151f72521a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3735092311842904656, guid: 1bd3bdae98c03b542ba68d151f72521a,
         type: 3}

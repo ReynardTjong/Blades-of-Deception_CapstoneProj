@@ -1,81 +1,89 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
+using UnityEngine.Windows;
 
 namespace BladesOfDeceptionCapstoneProject
 {
-    [CreateAssetMenu(menuName = "PlayerStates/SprintState")]
-    public class SprintState : PlayerState
+    public class SprintState : State
     {
-        private Vector3 gravityVelocity;
-        private Vector3 currentVelocity;
-        private Vector3 cVelocity;
-        private Vector3 velocity;
-        private Vector2 input;
-        private float playerSpeed;
-        private float gravityValue;
+        float gravityValue;
+        Vector3 currentVelocity;
 
-        public override void EnterState(Character character)
+        bool grounded;
+        bool sprint;
+        float playerSpeed;
+        Vector3 cVelocity;
+        public SprintState(Character _character, StateMachine _stateMachine) : base(_character, _stateMachine)
         {
-            Debug.Log("Entered Sprint State");
+            character = _character;
+            stateMachine = _stateMachine;
+        }
 
+        public override void Enter()
+        {
+            base.Enter();
+
+            sprint = false;
             input = Vector2.zero;
+            velocity = Vector3.zero;
             currentVelocity = Vector3.zero;
             gravityVelocity.y = 0;
+
             playerSpeed = character.sprintSpeed;
+            grounded = character.controller.isGrounded;
             gravityValue = character.gravityValue;
-
-            character.animator.SetFloat("speed", 1.2f);
-            InitializeInputActions(character.playerInput);
         }
 
-        public override void UpdateState(Character character)
+        public override void HandleInput()
         {
-            HandleInput(character);
-            HandleMovement(character);
-            UpdateAnimation(character);
-        }
-
-        private void HandleInput(Character character)
-        {
+            base.Enter();
             input = moveAction.ReadValue<Vector2>();
             velocity = new Vector3(input.x, 0, input.y);
-            velocity = Vector3.ProjectOnPlane(character.cameraTransform.right * velocity.x + character.cameraTransform.forward * velocity.z, Vector3.up);
 
-            if (!sprintAction.ReadValue<float>().Equals(1f) || input.sqrMagnitude == 0f)
+            velocity = velocity.x * character.cameraTransform.right.normalized + velocity.z * character.cameraTransform.forward.normalized;
+            velocity.y = 0f;
+            if (sprintAction.triggered || input.sqrMagnitude == 0f)
             {
-                character.ChangeState(character.standingState);
+                sprint = false;
+            }
+            else
+            {
+                sprint = true;
             }
         }
 
-        private void HandleMovement(Character character)
+        public override void LogicUpdate()
         {
-            gravityVelocity.y += character.gravityValue * Time.deltaTime;
-            if (character.controller.isGrounded && gravityVelocity.y < 0)
+            if (sprint)
+            {
+                character.animator.SetFloat("speed", input.magnitude + 0.5f, character.speedDampTime, Time.deltaTime);
+            }
+            else
+            {
+                stateMachine.ChangeState(character.standing);
+            }
+        }
+
+        public override void PhysicsUpdate()
+        {
+            base.PhysicsUpdate();
+            gravityVelocity.y += gravityValue * Time.deltaTime;
+            grounded = character.controller.isGrounded;
+            if (grounded && gravityVelocity.y < 0)
             {
                 gravityVelocity.y = 0f;
             }
-
             currentVelocity = Vector3.SmoothDamp(currentVelocity, velocity, ref cVelocity, character.velocityDampTime);
+
             character.controller.Move(currentVelocity * Time.deltaTime * playerSpeed + gravityVelocity * Time.deltaTime);
+
 
             if (velocity.sqrMagnitude > 0)
             {
                 character.transform.rotation = Quaternion.Slerp(character.transform.rotation, Quaternion.LookRotation(velocity), character.rotationDampTime);
             }
-        }
-
-        private void UpdateAnimation(Character character)
-        {
-            float speed = input.magnitude;
-            character.animator.SetFloat("speed", Mathf.Max(speed, 1.2f));
-        }
-
-        public override void ExitState(Character character)
-        {
-            Debug.Log("Exited Sprint State");
-            gravityVelocity.y = 0f;
-            character.animator.SetFloat("speed", 0f);
         }
     }
 }
