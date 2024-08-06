@@ -15,4 +15,4 @@ MonoBehaviour:
   attackAnimations:
   - Attack1
   - Attack2
-  crossfadeDuration: 0.15
+  crossfadeDuration: 0.1

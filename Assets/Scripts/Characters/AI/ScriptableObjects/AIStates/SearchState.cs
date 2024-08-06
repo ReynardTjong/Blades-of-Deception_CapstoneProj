@@ -22,6 +22,7 @@ namespace BladesOfDeceptionCapstoneProject
             aiController.agent.speed = walkSpeed;
             aiController.agent.isStopped = true;
             Debug.Log("SearchState: Entered, starting search timer with duration: " + searchDuration);
+            aiController.animator.CrossFade("Search", 0.1f);
         }
 
         public override void UpdateState(AIController aiController)

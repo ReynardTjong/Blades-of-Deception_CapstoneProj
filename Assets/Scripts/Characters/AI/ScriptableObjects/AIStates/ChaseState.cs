@@ -14,6 +14,7 @@ namespace BladesOfDeceptionCapstoneProject
             aiController.agent.isStopped = false;
             aiController.agent.speed = chaseSpeed;
             Debug.Log("ChaseState: Entered with speed: " + chaseSpeed);
+            aiController.animator.CrossFade("Chase", 0.1f);
         }
 
         public override void UpdateState(AIController aiController)
