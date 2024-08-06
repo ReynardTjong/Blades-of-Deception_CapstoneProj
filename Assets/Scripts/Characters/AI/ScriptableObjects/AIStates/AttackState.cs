@@ -7,6 +7,8 @@ namespace BladesOfDeceptionCapstoneProject
     public class AttackState : AIState
     {
         private float attackCooldownTimer;
+        [SerializeField] private string[] attackAnimations; // Array to hold multiple attack animation names
+        [SerializeField] private float crossfadeDuration = 0.1f; // Duration of the crossfade
 
         public override void EnterState(AIController aiController)
         {
@@ -58,6 +60,13 @@ namespace BladesOfDeceptionCapstoneProject
                 Debug.Log("AttackState: Player took damage, remaining health: " + playerHealth.CurrentHealth);
 
                 attackCooldownTimer = aiController.bossStats != null ? aiController.bossStats.attackCooldown : aiController.enemyStats.attackCooldown;
+
+                // Randomly select an attack animation and crossfade to it
+                if (attackAnimations.Length > 0)
+                {
+                    string attackAnimation = attackAnimations[Random.Range(0, attackAnimations.Length)];
+                    aiController.animator.CrossFade(attackAnimation, crossfadeDuration);
+                }
             }
             else
             {

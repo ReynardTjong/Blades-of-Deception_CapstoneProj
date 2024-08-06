@@ -22,10 +22,13 @@ namespace BladesOfDeceptionCapstoneProject
         [HideInInspector] public BossStats bossStats;
         public WaypointsManager waypointsManager;
 
+        private float currentHealth;
+
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
+            currentHealth = enemyStats != null ? enemyStats.health : bossStats.health;
 
             if (currentState != null)
             {
@@ -104,6 +107,30 @@ namespace BladesOfDeceptionCapstoneProject
                 }
             }
             return false;
+        }
+
+        // New methods for handling damage and hit effects
+        public void TakeDamage(float damage)
+        {
+            currentHealth -= damage;
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+
+        public void HitVFX(Vector3 hitPoint)
+        {
+            // Implement visual effects for being hit
+            Debug.Log("Hit VFX at: " + hitPoint);
+        }
+
+        private void Die()
+        {
+            // Handle death logic
+            Debug.Log("Enemy died.");
+            // Optionally, transition to a death state, play death animation, etc.
+            Destroy(gameObject);
         }
     }
 }

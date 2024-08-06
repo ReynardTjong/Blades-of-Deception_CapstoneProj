@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe1a53c293bb93e4495a69d80d51d99c, type: 3}
   m_Name: Enemy_Attack
   m_EditorClassIdentifier: 
+  attackAnimations:
+  - Attack1
+  - Attack2
+  crossfadeDuration: 0.15

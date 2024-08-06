@@ -11,7 +11,7 @@ namespace BladesOfDeceptionCapstoneProject
         bool grounded;
         bool sheathWeapon;
         float playerSpeed;
-        //bool attack;
+        bool attack;
 
         Vector3 cVelocity;
 
@@ -29,7 +29,7 @@ namespace BladesOfDeceptionCapstoneProject
             input = Vector2.zero;
             currentVelocity = Vector3.zero;
             gravityVelocity.y = 0;
-            //attack = false;
+            attack = false;
 
             velocity = character.playerVelocity;
             playerSpeed = character.playerSpeed;
@@ -48,7 +48,7 @@ namespace BladesOfDeceptionCapstoneProject
 
             if (attackAction.triggered)
             {
-               // attack = true;
+               attack = true;
             }
 
             input = moveAction.ReadValue<Vector2>();
@@ -71,11 +71,11 @@ namespace BladesOfDeceptionCapstoneProject
                 stateMachine.ChangeState(character.standing);
             }
 
-            /*if (attack)
+            if (attack)
             {
                 character.animator.SetTrigger("attack");
                 stateMachine.ChangeState(character.attacking);
-            }*/
+            }
         }
 
         public override void PhysicsUpdate()
