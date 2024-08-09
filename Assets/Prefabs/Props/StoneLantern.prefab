@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6aff0459f6cae72488eaadf196a0bc7e, type: 2}
+    - target: {fileID: -4454953681225596093, guid: dfa89fa11d0c6dd4b8b9ed1a7d6cb563,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -3434025462987707789, guid: dfa89fa11d0c6dd4b8b9ed1a7d6cb563,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -71,7 +76,17 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: dfa89fa11d0c6dd4b8b9ed1a7d6cb563,
         type: 3}
       propertyPath: m_Name
-      value: stone lantern
+      value: StoneLantern
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dfa89fa11d0c6dd4b8b9ed1a7d6cb563,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3093925827201567642, guid: dfa89fa11d0c6dd4b8b9ed1a7d6cb563,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
