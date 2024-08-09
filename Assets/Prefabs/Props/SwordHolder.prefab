@@ -58,11 +58,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8536790836990602751, guid: bcc019e710b2ca9498bb92c95335a096,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7321000998819253317, guid: bcc019e710b2ca9498bb92c95335a096,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -5660332146958323478, guid: bcc019e710b2ca9498bb92c95335a096,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9deb96cdd1dd9d449a5761c6a23b4c39, type: 2}
+    - target: {fileID: -2354506953388749091, guid: bcc019e710b2ca9498bb92c95335a096,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -1657402909369382639, guid: bcc019e710b2ca9498bb92c95335a096,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -71,13 +86,28 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bcc019e710b2ca9498bb92c95335a096,
         type: 3}
       propertyPath: m_Name
-      value: sword holder
+      value: SwordHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bcc019e710b2ca9498bb92c95335a096,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1344934874292705921, guid: bcc019e710b2ca9498bb92c95335a096,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9deb96cdd1dd9d449a5761c6a23b4c39, type: 2}
+    - target: {fileID: 1356014372909742768, guid: bcc019e710b2ca9498bb92c95335a096,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2714808554755423899, guid: bcc019e710b2ca9498bb92c95335a096,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5092506251500212311, guid: bcc019e710b2ca9498bb92c95335a096,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

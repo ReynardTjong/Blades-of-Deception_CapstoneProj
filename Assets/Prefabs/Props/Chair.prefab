@@ -66,7 +66,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a3660fa3251db9d438cbd8e6a225a99e,
         type: 3}
       propertyPath: m_Name
-      value: chair
+      value: Chair
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a3660fa3251db9d438cbd8e6a225a99e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
