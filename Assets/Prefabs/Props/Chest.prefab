@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2e466087b17da4045826a3507cba9d3e, type: 2}
+    - target: {fileID: -721370402306840000, guid: 1ddb1adc7f64cbe47b5c9421ea3cae61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -236188481110283421, guid: 1ddb1adc7f64cbe47b5c9421ea3cae61,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -71,18 +76,38 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1ddb1adc7f64cbe47b5c9421ea3cae61,
         type: 3}
       propertyPath: m_Name
-      value: chest
+      value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ddb1adc7f64cbe47b5c9421ea3cae61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3835294580639030054, guid: 1ddb1adc7f64cbe47b5c9421ea3cae61,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4013aafc8d081ec43842ce8be1f398c0, type: 2}
+    - target: {fileID: 4564577464659487881, guid: 1ddb1adc7f64cbe47b5c9421ea3cae61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5062116046330215771, guid: 1ddb1adc7f64cbe47b5c9421ea3cae61,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 998a9c8d9bee60c42b698aaf31c9d8c1, type: 2}
+    - target: {fileID: 6117875958812821638, guid: 1ddb1adc7f64cbe47b5c9421ea3cae61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9137591913491534708, guid: 1ddb1adc7f64cbe47b5c9421ea3cae61,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

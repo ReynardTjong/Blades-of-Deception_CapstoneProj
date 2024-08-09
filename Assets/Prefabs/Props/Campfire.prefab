@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8245382869904184356, guid: 3159645ee3684064ab8b9e89e334963d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -7254570469942142909, guid: 3159645ee3684064ab8b9e89e334963d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -68,16 +73,41 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 678dbcaf2242fc143ab96b432e9e7bcb, type: 2}
+    - target: {fileID: -4938154441523300422, guid: 3159645ee3684064ab8b9e89e334963d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -4671361830930031399, guid: 3159645ee3684064ab8b9e89e334963d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 804424617828969858, guid: 3159645ee3684064ab8b9e89e334963d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3159645ee3684064ab8b9e89e334963d,
         type: 3}
       propertyPath: m_Name
-      value: campfire
+      value: Campfire
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3159645ee3684064ab8b9e89e334963d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1473451121033501013, guid: 3159645ee3684064ab8b9e89e334963d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4f4cfcaae87029d40890b5e2e46d7dc4, type: 2}
+    - target: {fileID: 3490326297842582051, guid: 3159645ee3684064ab8b9e89e334963d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6434952089443864986, guid: 3159645ee3684064ab8b9e89e334963d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -88,6 +118,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0bad94e4f2b758a44ba54d4b5ce5e6d8, type: 2}
+    - target: {fileID: 6992765711870362446, guid: 3159645ee3684064ab8b9e89e334963d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
