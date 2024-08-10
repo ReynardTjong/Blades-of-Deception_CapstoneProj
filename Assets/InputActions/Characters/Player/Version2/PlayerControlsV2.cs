@@ -155,7 +155,7 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fd55378d-de46-4502-9f35-785b89ceb5cb"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
