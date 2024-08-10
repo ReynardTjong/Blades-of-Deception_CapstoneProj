@@ -30,12 +30,5 @@ public class EquipmentSystem : MonoBehaviour
         weaponSheath.gameObject.SetActive(true);
     }
 
-    public void StartDealDamage()
-    {
-        currentWeaponInHand.GetComponentInChildren<DamageDealer>().StartDealDamage();
-    }
-    public void EndDealDamage()
-    {
-        currentWeaponInHand.GetComponentInChildren<DamageDealer>().EndDealDamage();
-    }
+
 }
