@@ -4411,7 +4411,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.3
-  m_Height: 2
+  m_Height: 1.3
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &1522308617
@@ -4442,13 +4442,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cceafc66e053e874ab884aa8524ffe1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveDirection: {x: 0, y: 0, z: 0}
   myTransform: {fileID: 0}
   animatorHandler: {fileID: 0}
   rigidbody: {fileID: 0}
   normalCamera: {fileID: 0}
+  groundDetectionRayStartPoint: 0.5
+  minimumDistanceNeededToBeginFall: 1
+  groundDirectionRayDistance: -0.2
+  inAirTimer: 0
   movementSpeed: 5
+  walkingSpeed: 1
   sprintSpeed: 7
   rotationSpeed: 10
+  fallingSpeed: 60
 --- !u!114 &1522308619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4515,6 +4522,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteracting: 0
   isSprinting: 0
+  isInAir: 0
+  isGrounded: 0
 --- !u!1001 &1537017291
 PrefabInstance:
   m_ObjectHideFlags: 0

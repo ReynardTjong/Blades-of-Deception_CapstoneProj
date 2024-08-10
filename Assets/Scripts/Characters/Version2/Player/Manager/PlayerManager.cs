@@ -40,6 +40,7 @@ namespace BladesOfDeceptionCapstoneProject
             inputHandler.TickInput(delta);
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
+            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
         }
 
         private void FixedUpdate()
@@ -58,6 +59,11 @@ namespace BladesOfDeceptionCapstoneProject
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
             isSprinting = inputHandler.b_Input;
+
+            if (isInAir)
+            {
+                playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
+            }
         }
     }
 }
