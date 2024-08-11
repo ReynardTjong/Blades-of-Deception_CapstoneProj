@@ -8,11 +8,13 @@ namespace BladesOfDeceptionCapstoneProject
     {
         AnimatorHandler animatorHandler;
         InputHandler inputHandler;
+        WeaponSlotManager weaponSlotManager;
         public string lastAttack;
 
         private void Awake()
         {
             animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             inputHandler = GetComponent<InputHandler>();
         }
 
@@ -31,12 +33,14 @@ namespace BladesOfDeceptionCapstoneProject
 
         public void HandleLightAttack(WeaponItem weapon)
         {
+            weaponSlotManager.attackingWeapon = weapon;
             animatorHandler.PlayTargetAnimation(weapon.Katana_Light_Attack_1, true);
             lastAttack = weapon.Katana_Light_Attack_1;
         }
 
         public void HandleHeavyAttack(WeaponItem weapon)
         {
+            weaponSlotManager.attackingWeapon = weapon;
             animatorHandler.PlayTargetAnimation(weapon.Katana_Heavy_Attack_1, true);
             lastAttack = weapon.Katana_Heavy_Attack_1;
         }

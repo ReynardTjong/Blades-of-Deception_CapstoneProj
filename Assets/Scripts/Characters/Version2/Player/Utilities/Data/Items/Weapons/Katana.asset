@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69b69c94ffde854f9595255b4fc5df3, type: 3}
   m_Name: Katana
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: e830b58c7b4abdf4f863ba73e72360cf, type: 3}
   itemName: Katana
   modelPrefab: {fileID: 2526778608014207932, guid: 28bd273e53e6b114baaac235065544cd,
     type: 3}
@@ -22,3 +22,6 @@ MonoBehaviour:
   Katana_Light_Attack_1: Katana_LightAttack_01
   Katana_Light_Attack_2: Katana_LightAttack_02
   Katana_Heavy_Attack_1: Katana_HeavyAttack_01
+  baseStamina: 20
+  lightAttackMultiplier: 1
+  heavyAttackMultiplier: 2

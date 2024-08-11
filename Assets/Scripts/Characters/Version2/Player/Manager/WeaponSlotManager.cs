@@ -6,6 +6,8 @@ namespace BladesOfDeceptionCapstoneProject
 {
     public class WeaponSlotManager : MonoBehaviour
     {
+        public WeaponItem attackingWeapon;
+
         WeaponHolderSlots leftHandSlot;
         WeaponHolderSlots rightHandSlot;
 
@@ -14,9 +16,15 @@ namespace BladesOfDeceptionCapstoneProject
 
         Animator animator;
 
+        QuickSlotsUI quickSlotsUI;
+
+        PlayerStats playerStats;
+
         private void Awake()
         {
             animator = GetComponent<Animator>();
+            quickSlotsUI = FindAnyObjectByType<QuickSlotsUI>();
+            playerStats = GetComponentInParent<PlayerStats>();
 
             WeaponHolderSlots[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlots>();
             foreach (WeaponHolderSlots weaponSlot in weaponHolderSlots)
@@ -38,6 +46,7 @@ namespace BladesOfDeceptionCapstoneProject
             {
                 leftHandSlot.LoadWeaponModel(weaponItem);
                 LoadLeftWeaponDamageCollider();
+                quickSlotsUI.UpdateWeaponQuickSlotsUI(true, weaponItem);
 
                 #region Handle Left Weapon Idle Animations
                 if (weaponItem != null)
@@ -54,7 +63,7 @@ namespace BladesOfDeceptionCapstoneProject
             {
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
-
+                quickSlotsUI.UpdateWeaponQuickSlotsUI(false, weaponItem);
                 #region Handle Right Weapon Idle Animations
                 if (weaponItem != null)
                 {
@@ -100,6 +109,18 @@ namespace BladesOfDeceptionCapstoneProject
             rightHandDamageCollider.DisableDamageCollider();
         }
 
+        #endregion
+
+        #region Handle Weapon's Stamina Drainage
+        public void DrainStaminaLightAttack()
+        {
+            playerStats.TakeStaminaDamage(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.lightAttackMultiplier));
+        }
+
+        public void DrainStaminaHeavyAttack()
+        {
+            playerStats.TakeStaminaDamage(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.heavyAttackMultiplier));
+        }
         #endregion
     }
 }

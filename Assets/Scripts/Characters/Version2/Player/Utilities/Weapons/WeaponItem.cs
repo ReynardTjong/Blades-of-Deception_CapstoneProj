@@ -18,5 +18,10 @@ namespace BladesOfDeceptionCapstoneProject
         public string Katana_Light_Attack_1;
         public string Katana_Light_Attack_2;
         public string Katana_Heavy_Attack_1;
+
+        [Header("Stamin Costs")]
+        public int baseStamina;
+        public float lightAttackMultiplier;
+        public float heavyAttackMultiplier;
     }
 }
