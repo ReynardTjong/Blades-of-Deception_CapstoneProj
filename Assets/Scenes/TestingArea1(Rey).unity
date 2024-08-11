@@ -6960,9 +6960,6 @@ MonoBehaviour:
   b_Input: 0
   rb_Input: 0
   rt_Input: 0
-  d_Pad_Up: 0
-  d_Pad_Down: 0
-  d_Pad_Left: 0
   d_Pad_Right: 0
   rollFlag: 0
   sprintFlag: 0
@@ -7032,11 +7029,8 @@ MonoBehaviour:
   leftWeapon: {fileID: 11400000, guid: 58b87576f6656064b89888b262c288af, type: 2}
   unarmedWeapon: {fileID: 11400000, guid: 4ad9a49b5e44a55478b8e78e6f9e2424, type: 2}
   weaponsInRightHandSlots:
-  - {fileID: 0}
-  weaponsInLeftHandSlots:
-  - {fileID: 0}
-  currentRightWeaponIndex: 0
-  currentLeftWeaponIndex: 0
+  - {fileID: 11400000, guid: 58b87576f6656064b89888b262c288af, type: 2}
+  currentRightWeaponIndex: -1
 --- !u!114 &1522308623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9989,8 +9983,8 @@ SceneRoots:
   - {fileID: 952147925}
   - {fileID: 1859044675}
   - {fileID: 1076118896}
-  - {fileID: 1522308617}
-  - {fileID: 261115926}
   - {fileID: 2088862970}
   - {fileID: 192363570}
+  - {fileID: 261115926}
+  - {fileID: 1522308617}
   - {fileID: 532157041}

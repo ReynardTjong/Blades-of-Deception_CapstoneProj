@@ -15,9 +15,6 @@ namespace BladesOfDeceptionCapstoneProject
         public bool b_Input;
         public bool rb_Input;
         public bool rt_Input;
-        public bool d_Pad_Up;
-        public bool d_Pad_Down;
-        public bool d_Pad_Left;
         public bool d_Pad_Right;
 
         public bool rollFlag;
