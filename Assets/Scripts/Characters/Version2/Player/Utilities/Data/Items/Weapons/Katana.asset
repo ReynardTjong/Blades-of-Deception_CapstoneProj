@@ -17,3 +17,5 @@ MonoBehaviour:
   modelPrefab: {fileID: 2526778608014207932, guid: 28bd273e53e6b114baaac235065544cd,
     type: 3}
   isUnarmed: 0
+  Katana_Light_Attack_1: Katana_LightAttack_01
+  Katana_Heavy_Attack_1: Katana_HeavyAttack_01
