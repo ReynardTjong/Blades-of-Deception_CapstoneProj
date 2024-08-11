@@ -30,13 +30,23 @@ namespace BladesOfDeceptionCapstoneProject
 
         private void OnTriggerEnter(Collider collision)
         {
-            if (collision.tag == "Hittable")
+            if (collision.tag == "Player")
             {
                 PlayerStats playerStats = collision.GetComponent<PlayerStats>();
 
                 if (playerStats != null )
                 {
                     playerStats.TakeDamage(currentWeaponDamage);
+                }
+            }
+
+            if (collision.tag == "Enemy")
+            {
+                EnemyStatistics enemyStatistics = collision.GetComponent<EnemyStatistics>();
+
+                if (enemyStatistics != null )
+                {
+                    enemyStatistics.TakeDamage(currentWeaponDamage);
                 }
             }
         }
