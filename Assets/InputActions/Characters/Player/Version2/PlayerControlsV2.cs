@@ -283,7 +283,7 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""76d54315-141b-4062-8e46-bc22886217f3"",
-                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

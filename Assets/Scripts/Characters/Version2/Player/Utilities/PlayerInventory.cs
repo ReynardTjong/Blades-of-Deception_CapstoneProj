@@ -16,8 +16,8 @@ namespace BladesOfDeceptionCapstoneProject
         public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[1];
         public WeaponItem[] weaponsInLeftHandSlots = new WeaponItem[1];
 
-        public int currentRightWeaponIndex = 0;
-        public int currentLeftWeaponIndex = 0;
+        public int currentRightWeaponIndex = -1;
+        public int currentLeftWeaponIndex = -1;
 
         private void Awake()
         {
@@ -26,10 +26,8 @@ namespace BladesOfDeceptionCapstoneProject
 
         private void Start()
         {
-            rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
-            leftWeapon = weaponsInLeftHandSlots[currentLeftWeaponIndex];
-            weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
-            weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
+            rightWeapon = unarmedWeapon;
+            leftWeapon = unarmedWeapon;
         }
 
         public void ChangeRightWeapon()
