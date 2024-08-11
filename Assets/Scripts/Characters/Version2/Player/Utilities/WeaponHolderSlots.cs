@@ -7,6 +7,7 @@ namespace BladesOfDeceptionCapstoneProject
     public class WeaponHolderSlots : MonoBehaviour
     {
         public Transform parentOverride;
+        public bool isLeftHandSlot;
         public bool isRightHandSlot;
 
         public GameObject currentWeaponModel;

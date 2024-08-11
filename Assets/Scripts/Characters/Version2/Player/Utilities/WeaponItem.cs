@@ -9,5 +9,9 @@ namespace BladesOfDeceptionCapstoneProject
     {
         public GameObject modelPrefab;
         public bool isUnarmed;
+
+        [Header("Katana Attack Animations")]
+        public string Katana_Light_Attack_1;
+        public string Katana_Heavy_Attack_1;
     }
 }
