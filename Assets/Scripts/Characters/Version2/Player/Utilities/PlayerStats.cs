@@ -12,6 +12,13 @@ namespace BladesOfDeceptionCapstoneProject
 
         public HealthBar healthBar;
 
+        AnimatorHandler animatorHandler;
+
+        private void Awake()
+        {
+            animatorHandler = GetComponentInChildren<AnimatorHandler>();
+        }
+
         void Start()
         {
             maxHealth = SetMaxHealthFromHealthLevel();
@@ -29,6 +36,15 @@ namespace BladesOfDeceptionCapstoneProject
             currentHealth = currentHealth - damage;
 
             healthBar.SetCurrentHealth(currentHealth);
+
+            animatorHandler.PlayTargetAnimation("Hit", true);
+
+            if (currentHealth <= 0)
+            {
+                currentHealth = 0;
+                animatorHandler.PlayTargetAnimation("Death", true);
+                //Handle Player Death
+            }
         }
     }
 }

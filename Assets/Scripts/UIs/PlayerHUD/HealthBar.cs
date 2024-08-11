@@ -9,6 +9,11 @@ namespace BladesOfDeceptionCapstoneProject
     {
         public Slider slider;
 
+        private void Start()
+        {
+            slider = GetComponent<Slider>();
+        }
+
         public void SetMaxHealth(int maxHealth)
         {
             slider.maxValue = maxHealth;
