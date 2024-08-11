@@ -3,7 +3,32 @@ guid: 1bd3bdae98c03b542ba68d151f72521a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blade
+    second: {fileID: 2100000, guid: 00e37e77050f69e409a68360e6082358, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: crossguard
+    second: {fileID: 2100000, guid: 00e37e77050f69e409a68360e6082358, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grip
+    second: {fileID: 2100000, guid: 00e37e77050f69e409a68360e6082358, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pommel
+    second: {fileID: 2100000, guid: 00e37e77050f69e409a68360e6082358, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rainguard
+    second: {fileID: 2100000, guid: 00e37e77050f69e409a68360e6082358, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
