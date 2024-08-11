@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace BladesOfDeceptionCapstoneProject
 {
     public class HealthBar : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        public Slider slider;
+
+        public void SetMaxHealth(int maxHealth)
         {
-        
+            slider.maxValue = maxHealth;
+            slider.value = maxHealth;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void SetCurrentHealth(int currentHealth)
         {
-        
+            slider.value = currentHealth;
         }
     }
 }
