@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace BladesOfDeceptionCapstoneProject
@@ -25,7 +26,6 @@ namespace BladesOfDeceptionCapstoneProject
         [SerializeField] float groundDirectionRayDistance = -0.2f;
         LayerMask ignoreForGroundCheck;
         public float inAirTimer;
-
 
         [Header("Movement Stats")]
         [SerializeField] float movementSpeed = 5;
@@ -229,6 +229,27 @@ namespace BladesOfDeceptionCapstoneProject
             else
             {
                 myTransform.position = targetPosition;
+            }
+        }
+
+        public void HandleJumping()
+        {
+            if (playerManager.isInteracting)
+            {
+                return;
+            }
+
+            if (inputHandler.jump_Input)
+            {
+                if (inputHandler.moveAmount > 0)
+                {
+                    moveDirection = cameraObject.forward * inputHandler.vertical;
+                    moveDirection += cameraObject.right * inputHandler.horizontal;
+                    animatorHandler.PlayTargetAnimation("Jump", false);
+                    moveDirection.y = 0;
+                    Quaternion jumpRotation = Quaternion.LookRotation(moveDirection);
+                    myTransform.rotation = jumpRotation;
+                }
             }
         }
 

@@ -16,6 +16,7 @@ namespace BladesOfDeceptionCapstoneProject
         public bool rb_Input;
         public bool rt_Input;
         public bool d_Pad_Right;
+        public bool jump_Input;
 
         public bool rollFlag;
         public bool sprintFlag;
@@ -44,6 +45,10 @@ namespace BladesOfDeceptionCapstoneProject
                 inputActions = new PlayerControlsV2();
                 inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
                 inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+                inputActions.PlayerActions.RB.performed += i => rb_Input = true;
+                inputActions.PlayerActions.RT.performed += i => rt_Input = true;
+                inputActions.PlayerQuickSlots.DPadRight.performed += i => d_Pad_Right = true;
+                inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
             }
 
             inputActions.Enable();
@@ -74,6 +79,7 @@ namespace BladesOfDeceptionCapstoneProject
         private void HandleRollInput(float delta)
         {
             b_Input = inputActions.PlayerActions.Roll.IsPressed();
+            sprintFlag = b_Input;
 
             if (b_Input)
             {
@@ -94,9 +100,6 @@ namespace BladesOfDeceptionCapstoneProject
 
         private void HandleAttackInput(float delta)
         {
-            inputActions.PlayerActions.RB.performed += i => rb_Input = true;
-            inputActions.PlayerActions.RT.performed += i => rt_Input = true;
-
             //RB Input handle the right hand weapon's light attack
             if (rb_Input)
             {
@@ -130,8 +133,6 @@ namespace BladesOfDeceptionCapstoneProject
 
         private void HandleQuickSlotsInput()
         {
-            inputActions.PlayerQuickSlots.DPadRight.performed += i => d_Pad_Right = true;
-
             if (d_Pad_Right)
             {
                 playerInventory.ChangeRightWeapon();
