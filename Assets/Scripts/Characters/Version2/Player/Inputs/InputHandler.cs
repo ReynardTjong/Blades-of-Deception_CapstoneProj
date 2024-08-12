@@ -18,6 +18,8 @@ namespace BladesOfDeceptionCapstoneProject
         public bool d_Pad_Right;
         public bool jump_Input;
         public bool lockOnInput;
+        public bool right_Input;
+        public bool left_Input;
 
         public bool rollFlag;
         public bool sprintFlag;
@@ -54,6 +56,8 @@ namespace BladesOfDeceptionCapstoneProject
                 inputActions.PlayerQuickSlots.DPadRight.performed += i => d_Pad_Right = true;
                 inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
                 inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
+                inputActions.PlayerMovement.LockOnTargetRight.performed += i => right_Input = true;
+                inputActions.PlayerMovement.LockOnTargetLeft.performed += i => left_Input = true;
             }
 
             inputActions.Enable();
@@ -149,7 +153,6 @@ namespace BladesOfDeceptionCapstoneProject
         {
             if (lockOnInput && lockOnFlag == false)
             {
-                cameraHandler.ClearLockOnTargets();
                 lockOnInput = false; 
                 cameraHandler.HandleLockOn();
 
@@ -163,7 +166,26 @@ namespace BladesOfDeceptionCapstoneProject
             {
                 lockOnInput = false;
                 lockOnFlag = false;
-                cameraHandler.ClearLockOnTargets();
+            }
+
+            if (lockOnFlag && left_Input)
+            {
+                left_Input = false;
+                cameraHandler.HandleLockOn();
+                if (cameraHandler.leftLockTarget != null)
+                {
+                    cameraHandler.currentLockOnTarget = cameraHandler.leftLockTarget;
+                }
+            }
+
+            if (lockOnFlag && right_Input)
+            {
+                right_Input = false;
+                cameraHandler.HandleLockOn();
+                if (cameraHandler.rightLockTarget != null)
+                {
+                    cameraHandler.currentLockOnTarget = cameraHandler.rightLockTarget;
+                }
             }
         }
     }

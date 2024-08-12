@@ -22,6 +22,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Lock On Target Left",
+                    "type": "Button",
+                    "id": "ed6405c3-fadb-47de-9675-b3ac5b25ad7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Lock On Target Right",
+                    "type": "Button",
+                    "id": "d7323294-dacb-4867-87c2-0debee3e077e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -82,10 +100,10 @@
                 },
                 {
                     "name": "",
-                    "id": "13926545-bc56-47af-ae10-4862cccfbf1b",
-                    "path": "<Gamepad>/rightStick",
+                    "id": "4eac8225-e609-4002-88c2-e9701897aca6",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "StickDeadzone",
+                    "processors": "NormalizeVector2",
                     "groups": "",
                     "action": "Camera",
                     "isComposite": false,
@@ -93,12 +111,23 @@
                 },
                 {
                     "name": "",
-                    "id": "4eac8225-e609-4002-88c2-e9701897aca6",
-                    "path": "<Mouse>/delta",
+                    "id": "d2d129cc-a896-4a69-bd49-2a7fa399a48d",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
-                    "processors": "NormalizeVector2",
+                    "processors": "",
                     "groups": "",
-                    "action": "Camera",
+                    "action": "Lock On Target Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2439a0ef-0989-49c3-8712-8c15dfc8a38c",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lock On Target Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -155,17 +184,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "15435970-ab52-40c2-aef4-ca8643eb37cc",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Roll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "fd55378d-de46-4502-9f35-785b89ceb5cb",

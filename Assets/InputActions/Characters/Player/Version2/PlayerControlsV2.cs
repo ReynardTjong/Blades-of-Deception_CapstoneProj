@@ -44,6 +44,24 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lock On Target Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""ed6405c3-fadb-47de-9675-b3ac5b25ad7c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lock On Target Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""d7323294-dacb-4867-87c2-0debee3e077e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -104,10 +122,10 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""13926545-bc56-47af-ae10-4862cccfbf1b"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""id"": ""4eac8225-e609-4002-88c2-e9701897aca6"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": ""StickDeadzone"",
+                    ""processors"": ""NormalizeVector2"",
                     ""groups"": """",
                     ""action"": ""Camera"",
                     ""isComposite"": false,
@@ -115,12 +133,23 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4eac8225-e609-4002-88c2-e9701897aca6"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""d2d129cc-a896-4a69-bd49-2a7fa399a48d"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Camera"",
+                    ""action"": ""Lock On Target Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2439a0ef-0989-49c3-8712-8c15dfc8a38c"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lock On Target Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -177,17 +206,6 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""15435970-ab52-40c2-aef4-ca8643eb37cc"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Roll"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""fd55378d-de46-4502-9f35-785b89ceb5cb"",
@@ -280,6 +298,8 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
         m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
         m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
         m_PlayerMovement_Camera = m_PlayerMovement.FindAction("Camera", throwIfNotFound: true);
+        m_PlayerMovement_LockOnTargetLeft = m_PlayerMovement.FindAction("Lock On Target Left", throwIfNotFound: true);
+        m_PlayerMovement_LockOnTargetRight = m_PlayerMovement.FindAction("Lock On Target Right", throwIfNotFound: true);
         // PlayerActions
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_Roll = m_PlayerActions.FindAction("Roll", throwIfNotFound: true);
@@ -353,12 +373,16 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
     private List<IPlayerMovementActions> m_PlayerMovementActionsCallbackInterfaces = new List<IPlayerMovementActions>();
     private readonly InputAction m_PlayerMovement_Movement;
     private readonly InputAction m_PlayerMovement_Camera;
+    private readonly InputAction m_PlayerMovement_LockOnTargetLeft;
+    private readonly InputAction m_PlayerMovement_LockOnTargetRight;
     public struct PlayerMovementActions
     {
         private @PlayerControlsV2 m_Wrapper;
         public PlayerMovementActions(@PlayerControlsV2 wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
         public InputAction @Camera => m_Wrapper.m_PlayerMovement_Camera;
+        public InputAction @LockOnTargetLeft => m_Wrapper.m_PlayerMovement_LockOnTargetLeft;
+        public InputAction @LockOnTargetRight => m_Wrapper.m_PlayerMovement_LockOnTargetRight;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -374,6 +398,12 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
             @Camera.started += instance.OnCamera;
             @Camera.performed += instance.OnCamera;
             @Camera.canceled += instance.OnCamera;
+            @LockOnTargetLeft.started += instance.OnLockOnTargetLeft;
+            @LockOnTargetLeft.performed += instance.OnLockOnTargetLeft;
+            @LockOnTargetLeft.canceled += instance.OnLockOnTargetLeft;
+            @LockOnTargetRight.started += instance.OnLockOnTargetRight;
+            @LockOnTargetRight.performed += instance.OnLockOnTargetRight;
+            @LockOnTargetRight.canceled += instance.OnLockOnTargetRight;
         }
 
         private void UnregisterCallbacks(IPlayerMovementActions instance)
@@ -384,6 +414,12 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
             @Camera.started -= instance.OnCamera;
             @Camera.performed -= instance.OnCamera;
             @Camera.canceled -= instance.OnCamera;
+            @LockOnTargetLeft.started -= instance.OnLockOnTargetLeft;
+            @LockOnTargetLeft.performed -= instance.OnLockOnTargetLeft;
+            @LockOnTargetLeft.canceled -= instance.OnLockOnTargetLeft;
+            @LockOnTargetRight.started -= instance.OnLockOnTargetRight;
+            @LockOnTargetRight.performed -= instance.OnLockOnTargetRight;
+            @LockOnTargetRight.canceled -= instance.OnLockOnTargetRight;
         }
 
         public void RemoveCallbacks(IPlayerMovementActions instance)
@@ -529,6 +565,8 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
+        void OnLockOnTargetLeft(InputAction.CallbackContext context);
+        void OnLockOnTargetRight(InputAction.CallbackContext context);
     }
     public interface IPlayerActionsActions
     {
