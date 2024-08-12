@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace BladesOfDeceptionCapstoneProject
 {
-    public class PlayerManager : MonoBehaviour
+    public class PlayerManager : CharacterManager
     {
         InputHandler inputHandler;
         Animator anim;

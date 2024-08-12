@@ -17,16 +17,19 @@ namespace BladesOfDeceptionCapstoneProject
         public bool rt_Input;
         public bool d_Pad_Right;
         public bool jump_Input;
+        public bool lockOnInput;
 
         public bool rollFlag;
         public bool sprintFlag;
         public bool comboFlag;
+        public bool lockOnFlag;
         public float rollInputTimer;
 
         PlayerControlsV2 inputActions;
         PlayerAttacker playerAttacker;
         PlayerInventory playerInventory;
         PlayerManager playerManager;
+        CameraHandler cameraHandler;
 
         Vector2 movementInput;
         Vector2 cameraInput;
@@ -36,6 +39,7 @@ namespace BladesOfDeceptionCapstoneProject
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();  
             playerManager = GetComponent<PlayerManager>();
+            cameraHandler = FindObjectOfType<CameraHandler>();
         }
 
         public void OnEnable()
@@ -49,6 +53,7 @@ namespace BladesOfDeceptionCapstoneProject
                 inputActions.PlayerActions.RT.performed += i => rt_Input = true;
                 inputActions.PlayerQuickSlots.DPadRight.performed += i => d_Pad_Right = true;
                 inputActions.PlayerActions.Jump.performed += i => jump_Input = true;
+                inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
             }
 
             inputActions.Enable();
@@ -65,6 +70,7 @@ namespace BladesOfDeceptionCapstoneProject
             HandleRollInput(delta);
             HandleAttackInput(delta);
             HandleQuickSlotsInput();
+            HandleLockOnInput();
         }
 
         private void MoveInput(float delta)
@@ -136,6 +142,28 @@ namespace BladesOfDeceptionCapstoneProject
             if (d_Pad_Right)
             {
                 playerInventory.ChangeRightWeapon();
+            }
+        }
+
+        private void HandleLockOnInput()
+        {
+            if (lockOnInput && lockOnFlag == false)
+            {
+                cameraHandler.ClearLockOnTargets();
+                lockOnInput = false; 
+                cameraHandler.HandleLockOn();
+
+                if (cameraHandler.nearestLockOnTarget != null)
+                {
+                    cameraHandler.currentLockOnTarget = cameraHandler.nearestLockOnTarget;
+                    lockOnFlag = true;
+                }
+            }
+            else if (lockOnInput && lockOnFlag)
+            {
+                lockOnInput = false;
+                lockOnFlag = false;
+                cameraHandler.ClearLockOnTargets();
             }
         }
     }
