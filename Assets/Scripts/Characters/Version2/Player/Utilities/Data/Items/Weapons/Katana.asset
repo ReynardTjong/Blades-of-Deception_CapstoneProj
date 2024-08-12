@@ -22,7 +22,12 @@ MonoBehaviour:
   th_idle: Th_Idle
   Katana_Light_Attack_1: Katana_LightAttack_01
   Katana_Light_Attack_2: Katana_LightAttack_02
+  Katana_Light_Attack_3: Katana_LightAttack_03
+  Katana_Light_Attack_4: Katana_LightAttack_04
   Katana_Heavy_Attack_1: Katana_HeavyAttack_01
+  Katana_Heavy_Attack_2: Katana_HeavyAttack_02
+  Katana_Heavy_Attack_3: Katana_HeavyAttack_03
+  Katana_Heavy_Attack_4: Katana_HeavyAttack_04
   baseStamina: 20
   lightAttackMultiplier: 1
   heavyAttackMultiplier: 2

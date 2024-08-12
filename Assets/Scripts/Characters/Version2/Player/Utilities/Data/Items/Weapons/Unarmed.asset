@@ -19,6 +19,15 @@ MonoBehaviour:
   isUnarmed: 1
   right_hand_idle: Right Arm Empty
   left_hand_idle: 
+  th_idle: 
   Katana_Light_Attack_1: Katana_LightAttack_01
   Katana_Light_Attack_2: Katana_LightAttack_02
+  Katana_Light_Attack_3: Katana_LightAttack_03
+  Katana_Light_Attack_4: Katana_LightAttack_04
   Katana_Heavy_Attack_1: Katana_HeavyAttack_01
+  Katana_Heavy_Attack_2: Katana_HeavyAttack_02
+  Katana_Heavy_Attack_3: Katana_HeavyAttack_03
+  Katana_Heavy_Attack_4: Katana_HeavyAttack_04
+  baseStamina: 0
+  lightAttackMultiplier: 0
+  heavyAttackMultiplier: 0
