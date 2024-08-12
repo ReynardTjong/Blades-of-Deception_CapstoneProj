@@ -13,6 +13,7 @@ namespace BladesOfDeceptionCapstoneProject
         public float mouseY;
 
         public bool b_Input;
+        public bool th_Input;
         public bool rb_Input;
         public bool rt_Input;
         public bool d_Pad_Right;
@@ -22,6 +23,7 @@ namespace BladesOfDeceptionCapstoneProject
         public bool left_Input;
 
         public bool rollFlag;
+        public bool twoHandFlag;
         public bool sprintFlag;
         public bool comboFlag;
         public bool lockOnFlag;
@@ -31,6 +33,7 @@ namespace BladesOfDeceptionCapstoneProject
         PlayerAttacker playerAttacker;
         PlayerInventory playerInventory;
         PlayerManager playerManager;
+        WeaponSlotManager weaponSlotManager;
         CameraHandler cameraHandler;
 
         Vector2 movementInput;
@@ -41,6 +44,7 @@ namespace BladesOfDeceptionCapstoneProject
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();  
             playerManager = GetComponent<PlayerManager>();
+            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             cameraHandler = FindObjectOfType<CameraHandler>();
         }
 
@@ -58,6 +62,7 @@ namespace BladesOfDeceptionCapstoneProject
                 inputActions.PlayerActions.LockOn.performed += i => lockOnInput = true;
                 inputActions.PlayerMovement.LockOnTargetRight.performed += i => right_Input = true;
                 inputActions.PlayerMovement.LockOnTargetLeft.performed += i => left_Input = true;
+                inputActions.PlayerActions.TwoHanded.performed += i => th_Input = true;
             }
 
             inputActions.Enable();
@@ -70,14 +75,15 @@ namespace BladesOfDeceptionCapstoneProject
 
         public void TickInput(float delta)
         {
-            MoveInput(delta);
+            HandleMoveInput(delta);
             HandleRollInput(delta);
             HandleAttackInput(delta);
             HandleQuickSlotsInput();
             HandleLockOnInput();
+            HandleTwoHandedInput();
         }
 
-        private void MoveInput(float delta)
+        private void HandleMoveInput(float delta)
         {
             horizontal = movementInput.x;
             vertical = movementInput.y;
@@ -166,6 +172,7 @@ namespace BladesOfDeceptionCapstoneProject
             {
                 lockOnInput = false;
                 lockOnFlag = false;
+                cameraHandler.ClearLockOnTargets();
             }
 
             if (lockOnFlag && left_Input)
@@ -185,6 +192,27 @@ namespace BladesOfDeceptionCapstoneProject
                 if (cameraHandler.rightLockTarget != null)
                 {
                     cameraHandler.currentLockOnTarget = cameraHandler.rightLockTarget;
+                }
+            }
+
+            cameraHandler.SetCameraHeight();
+        }
+
+        private void HandleTwoHandedInput()
+        {
+            if (th_Input)
+            {
+                th_Input = false;
+                twoHandFlag = !twoHandFlag;
+
+                if (twoHandFlag)
+                {
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
+                }
+                else
+                {
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
                 }
             }
         }

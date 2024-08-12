@@ -203,6 +203,15 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TwoHanded"",
+                    ""type"": ""Button"",
+                    ""id"": ""ec28846a-de55-420f-a9ea-17d1661c64c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -260,6 +269,17 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
                     ""action"": ""LockOn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7085b72-d231-4f77-aa88-891554dfb6f4"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TwoHanded"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -307,6 +327,7 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
         m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
+        m_PlayerActions_TwoHanded = m_PlayerActions.FindAction("TwoHanded", throwIfNotFound: true);
         // PlayerQuickSlots
         m_PlayerQuickSlots = asset.FindActionMap("PlayerQuickSlots", throwIfNotFound: true);
         m_PlayerQuickSlots_DPadRight = m_PlayerQuickSlots.FindAction("D-Pad Right", throwIfNotFound: true);
@@ -446,6 +467,7 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_RT;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_LockOn;
+    private readonly InputAction m_PlayerActions_TwoHanded;
     public struct PlayerActionsActions
     {
         private @PlayerControlsV2 m_Wrapper;
@@ -455,6 +477,7 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
         public InputAction @RT => m_Wrapper.m_PlayerActions_RT;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
+        public InputAction @TwoHanded => m_Wrapper.m_PlayerActions_TwoHanded;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -479,6 +502,9 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
             @LockOn.started += instance.OnLockOn;
             @LockOn.performed += instance.OnLockOn;
             @LockOn.canceled += instance.OnLockOn;
+            @TwoHanded.started += instance.OnTwoHanded;
+            @TwoHanded.performed += instance.OnTwoHanded;
+            @TwoHanded.canceled += instance.OnTwoHanded;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -498,6 +524,9 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
             @LockOn.started -= instance.OnLockOn;
             @LockOn.performed -= instance.OnLockOn;
             @LockOn.canceled -= instance.OnLockOn;
+            @TwoHanded.started -= instance.OnTwoHanded;
+            @TwoHanded.performed -= instance.OnTwoHanded;
+            @TwoHanded.canceled -= instance.OnTwoHanded;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -575,6 +604,7 @@ public partial class @PlayerControlsV2: IInputActionCollection2, IDisposable
         void OnRT(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
+        void OnTwoHanded(InputAction.CallbackContext context);
     }
     public interface IPlayerQuickSlotsActions
     {
