@@ -18,7 +18,12 @@ namespace BladesOfDeceptionCapstoneProject
         [Header("Katana Attack Animations")]
         public string Katana_Light_Attack_1;
         public string Katana_Light_Attack_2;
+        public string Katana_Light_Attack_3;
+        public string Katana_Light_Attack_4;
         public string Katana_Heavy_Attack_1;
+        public string Katana_Heavy_Attack_2;
+        public string Katana_Heavy_Attack_3;
+        public string Katana_Heavy_Attack_4;
 
         [Header("Stamin Costs")]
         public int baseStamina;
