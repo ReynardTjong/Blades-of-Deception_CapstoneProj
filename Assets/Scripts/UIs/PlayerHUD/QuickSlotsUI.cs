@@ -17,6 +17,7 @@ namespace BladesOfDeceptionCapstoneProject
                 {
                     rightWeaponIcon.sprite = weapon.itemIcon;
                     rightWeaponIcon.enabled = true;
+                    
                 }
                 else
                 {

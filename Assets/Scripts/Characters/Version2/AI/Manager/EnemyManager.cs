@@ -6,16 +6,39 @@ namespace BladesOfDeceptionCapstoneProject
 {
     public class EnemyManager : CharacterManager
     {
-        // Start is called before the first frame update
-        void Start()
+        EnemyLocomotionManager enemyLocomotionManager;
+        public bool isPerformingAction;
+
+        [Header("AI Settings")]
+        public float detectionRadius = 20;
+        public float maximumDetectionAngle = 50;
+        public float minimumDetectionAngle = -50;
+
+        private void Awake()
         {
-        
+            enemyLocomotionManager = GetComponentInChildren<EnemyLocomotionManager>();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
-        
+            HandleCurrentAction();
+        }
+
+        private void HandleCurrentAction()
+        {
+            if (enemyLocomotionManager.currentTarget == null)
+            {
+                enemyLocomotionManager.HandleDetection();
+            }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Vector3 fovLine1 = Quaternion.AngleAxis(maximumDetectionAngle, transform.up) * transform.forward * detectionRadius;
+            Vector3 fovLine2 = Quaternion.AngleAxis(minimumDetectionAngle, transform.up) * transform.forward * detectionRadius;
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(transform.position, fovLine1);
+            Gizmos.DrawRay(transform.position, fovLine2);
         }
     }
 }
