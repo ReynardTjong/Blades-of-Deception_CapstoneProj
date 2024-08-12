@@ -7,6 +7,7 @@ namespace BladesOfDeceptionCapstoneProject
     public class PlayerInventory : MonoBehaviour
     {
         WeaponSlotManager weaponSlotManager;
+        public AnimatorHandler animatorHandler;
 
         public WeaponItem rightWeapon;
         public WeaponItem leftWeapon;
@@ -20,6 +21,7 @@ namespace BladesOfDeceptionCapstoneProject
         private void Awake()
         {
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+            animatorHandler = GetComponentInChildren<AnimatorHandler>();
         }
 
         private void Start()
@@ -37,11 +39,13 @@ namespace BladesOfDeceptionCapstoneProject
                 currentRightWeaponIndex = -1;
                 rightWeapon = unarmedWeapon;
                 weaponSlotManager.LoadWeaponOnSlot(unarmedWeapon, false);
+                animatorHandler.PlayTargetAnimation("Katana_Unequip", true);
             }
             else if (weaponsInRightHandSlots[currentRightWeaponIndex] != null)
             {
                 rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
                 weaponSlotManager.LoadWeaponOnSlot(weaponsInRightHandSlots[currentRightWeaponIndex], false);
+                animatorHandler.PlayTargetAnimation("Katana_Equip", true);
             }
             else
             {
