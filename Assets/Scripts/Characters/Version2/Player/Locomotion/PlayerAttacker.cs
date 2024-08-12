@@ -23,11 +23,43 @@ namespace BladesOfDeceptionCapstoneProject
             if (inputHandler.comboFlag)
             {
                 animatorHandler.anim.SetBool("canDoCombo", false);
+                LightAttackCombos(weapon);
+                HeavyAttackCombos(weapon);
+            }
+        }
 
-                if (lastAttack == weapon.Katana_Light_Attack_1)
-                {
-                    animatorHandler.PlayTargetAnimation(weapon.Katana_Light_Attack_2, true);
-                }
+        public void LightAttackCombos(WeaponItem weapon)
+        {
+            if (lastAttack == weapon.Katana_Light_Attack_1)
+            {
+                animatorHandler.PlayTargetAnimation(weapon.Katana_Light_Attack_2, true);
+                lastAttack = weapon.Katana_Light_Attack_2;
+            }
+            else if (lastAttack == weapon.Katana_Light_Attack_2)
+            {
+                animatorHandler.PlayTargetAnimation(weapon.Katana_Light_Attack_3, true);
+                lastAttack = weapon.Katana_Light_Attack_3;
+
+            }
+            else if (lastAttack == weapon.Katana_Light_Attack_3)
+            {
+                animatorHandler.PlayTargetAnimation(weapon.Katana_Light_Attack_4, true);
+                lastAttack = weapon.Katana_Light_Attack_4;
+            }
+        }
+
+        public void HeavyAttackCombos(WeaponItem weapon)
+        {
+            if (lastAttack == weapon.Katana_Heavy_Attack_1)
+            {
+                animatorHandler.PlayTargetAnimation(weapon.Katana_Heavy_Attack_2, true);
+                lastAttack = weapon.Katana_Heavy_Attack_2;
+            }
+            else if (lastAttack == weapon.Katana_Heavy_Attack_2)
+            {
+                animatorHandler.PlayTargetAnimation(weapon.Katana_Heavy_Attack_3, true);
+                lastAttack = weapon.Katana_Heavy_Attack_3;
+
             }
         }
 

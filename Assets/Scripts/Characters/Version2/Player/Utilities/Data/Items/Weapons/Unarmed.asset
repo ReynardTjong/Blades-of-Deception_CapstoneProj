@@ -27,7 +27,6 @@ MonoBehaviour:
   Katana_Heavy_Attack_1: Katana_HeavyAttack_01
   Katana_Heavy_Attack_2: Katana_HeavyAttack_02
   Katana_Heavy_Attack_3: Katana_HeavyAttack_03
-  Katana_Heavy_Attack_4: Katana_HeavyAttack_04
   baseStamina: 0
   lightAttackMultiplier: 0
   heavyAttackMultiplier: 0
