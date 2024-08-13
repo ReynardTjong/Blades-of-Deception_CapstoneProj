@@ -16,10 +16,15 @@ namespace BladesOfDeceptionCapstoneProject
 
         private void Awake()
         {
-            enemyLocomotionManager = GetComponentInChildren<EnemyLocomotionManager>();
+            enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
         }
 
         private void Update()
+        {
+            
+        }
+
+        private void FixedUpdate()
         {
             HandleCurrentAction();
         }
@@ -29,6 +34,10 @@ namespace BladesOfDeceptionCapstoneProject
             if (enemyLocomotionManager.currentTarget == null)
             {
                 enemyLocomotionManager.HandleDetection();
+            }
+            else
+            {
+                enemyLocomotionManager.HandleMoveToTarget();
             }
         }
 

@@ -6,16 +6,22 @@ namespace BladesOfDeceptionCapstoneProject
 {
     public class EnemyAnimatorManager : AnimatorManager
     {
-        // Start is called before the first frame update
-        void Start()
+        EnemyLocomotionManager enemyLocomotionManager;
+
+        private void Awake()
         {
-        
+            anim = GetComponent<Animator>();
+            enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnAnimatorMove()
         {
-        
+            float delta = Time.deltaTime;
+            enemyLocomotionManager.enemyRigidbody.drag = 0;
+            Vector3 deltaPosition = anim.deltaPosition;
+            deltaPosition.y = 0;
+            Vector3 velocity = deltaPosition / delta;
+            enemyLocomotionManager.enemyRigidbody.velocity = velocity;
         }
     }
 }
