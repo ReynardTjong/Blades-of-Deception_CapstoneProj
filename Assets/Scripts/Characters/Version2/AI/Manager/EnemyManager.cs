@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.AI;
 
 namespace BladesOfDeceptionCapstoneProject
 {
@@ -9,10 +9,16 @@ namespace BladesOfDeceptionCapstoneProject
     {
         EnemyLocomotionManager enemyLocomotionManager;
         EnemyAnimatorManager enemyAnimatorManager;
-        public bool isPerformingAction;
+        EnemyStatistics enemyStatistics;
+        
+        public State currentState;
+        public CharacterStats currentTarget;
+        public NavMeshAgent navmeshAgent;
 
-        public EnemyAttackAction[] enemyAttacks;
-        public EnemyAttackAction currentAttack;
+        public bool isPerformingAction;
+        public float distanceFromTarget;
+        public float rotationSpeed = 25;
+        public float maximumAttackRange = 1.5f;
 
         [Header("AI Settings")]
         public float detectionRadius = 20;
@@ -25,6 +31,9 @@ namespace BladesOfDeceptionCapstoneProject
         {
             enemyLocomotionManager = GetComponent<EnemyLocomotionManager>();
             enemyAnimatorManager = GetComponent<EnemyAnimatorManager>();
+            enemyStatistics = GetComponent<EnemyStatistics>();
+            navmeshAgent = GetComponentInChildren<NavMeshAgent>();
+            navmeshAgent.enabled = false;
         }
 
         private void Update()
@@ -34,28 +43,25 @@ namespace BladesOfDeceptionCapstoneProject
 
         private void FixedUpdate()
         {
-            HandleCurrentAction();
+            HandleStateMachine();
         }
 
-        private void HandleCurrentAction()
+        private void HandleStateMachine()
         {
-            if (enemyLocomotionManager.currentTarget != null)
+            if (currentState != null)
             {
-                enemyLocomotionManager.distanceFromTarget = Vector3.Distance(enemyLocomotionManager.currentTarget.transform.position, transform.position);
+                State nextState = currentState.Tick(this, enemyStatistics, enemyAnimatorManager);
+
+                if (nextState != null)
+                {
+                    SwitchToNextState(nextState);
+                }
             }
-            
-            if (enemyLocomotionManager.currentTarget == null)
-            {
-                enemyLocomotionManager.HandleDetection();
-            }
-            else if (enemyLocomotionManager.distanceFromTarget > enemyLocomotionManager.stoppingDistance)
-            {
-                enemyLocomotionManager.HandleMoveToTarget();
-            }
-            else if (enemyLocomotionManager.distanceFromTarget <= enemyLocomotionManager.stoppingDistance)
-            {
-                AttackTarget();
-            }
+        }
+
+        private void SwitchToNextState(State state)
+        {
+            currentState = state;
         }
 
         private void HandleRecoveryTimer()
@@ -77,6 +83,7 @@ namespace BladesOfDeceptionCapstoneProject
         #region Attacks
         private void AttackTarget()
         {
+            /*
             if (isPerformingAction)
             {
                 return;
@@ -92,11 +99,12 @@ namespace BladesOfDeceptionCapstoneProject
                 currentRecoveryTime = currentAttack.recoveryTime;
                 enemyAnimatorManager.PlayTargetAnimation(currentAttack.actionAnimation, true);
                 currentAttack = null;
-            }
+            }*/
         }
 
         private void GetNewAttack()
         {
+            /*
             Vector3 targetsDirection = enemyLocomotionManager.currentTarget.transform.position - transform.position;
             float viewableAngle = Vector3.Angle(targetsDirection, transform.forward);
             enemyLocomotionManager.distanceFromTarget = Vector3.Distance(enemyLocomotionManager.currentTarget.transform.position, transform.position);
@@ -142,7 +150,7 @@ namespace BladesOfDeceptionCapstoneProject
                         }
                     }
                 }
-            }
+            }*/
         }
 
         #endregion
