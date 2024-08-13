@@ -54,18 +54,18 @@ namespace BladesOfDeceptionCapstoneProject
                 }
 
                 Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed);
+                enemyManager.transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, enemyManager.rotationSpeed);
             }
             //Rotate with pathfinding (navmesh)
             else
             {
-                Vector3 relativeDirection = transform.InverseTransformDirection(navmeshAgent.desiredVelocity);
-                Vector3 targetVelocity = enemyRigidbody.velocity;
+                Vector3 relativeDirection = transform.InverseTransformDirection(enemyManager.navmeshAgent.desiredVelocity);
+                Vector3 targetVelocity = enemyManager.enemyRigidbody.velocity;
 
-                navmeshAgent.enabled = true;
-                navmeshAgent.SetDestination(currentTarget.transform.position);
-                enemyRigidbody.velocity = targetVelocity;
-                transform.rotation = Quaternion.Slerp(transform.rotation, navmeshAgent.transform.rotation, rotationSpeed / Time.deltaTime);
+                enemyManager.navmeshAgent.enabled = true;
+                enemyManager.navmeshAgent.SetDestination(enemyManager.currentTarget.transform.position);
+                enemyManager.enemyRigidbody.velocity = targetVelocity;
+                enemyManager.transform.rotation = Quaternion.Slerp(transform.rotation, enemyManager.navmeshAgent.transform.rotation, enemyManager.rotationSpeed / Time.deltaTime);
             }
         }
     }
