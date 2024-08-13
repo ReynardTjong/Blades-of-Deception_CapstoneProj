@@ -14,6 +14,11 @@ namespace BladesOfDeceptionCapstoneProject
             float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
             //potentially circle player or walk around
 
+            if (enemyManager.isPerformingAction)
+            {
+                enemyAnimatorManager.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
+            }
+
             if (enemyManager.currentRecoveryTime <= 0 && distanceFromTarget <= enemyManager.maximumAttackRange)
             {
                 return attackState;
