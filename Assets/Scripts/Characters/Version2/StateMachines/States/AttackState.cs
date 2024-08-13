@@ -12,6 +12,9 @@ namespace BladesOfDeceptionCapstoneProject
         public EnemyAttackAction currentAttack;
         public override State Tick(EnemyManager enemyManager, EnemyStatistics enemyStatistics, EnemyAnimatorManager enemyAnimatorManager)
         {
+            Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
+            enemyManager.viewableAngle = Vector3.Angle(targetDirection, transform.forward);
+
             if (enemyManager.isPerformingAction)
             {
                 return combatStanceState;
