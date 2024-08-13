@@ -23,13 +23,9 @@ namespace BladesOfDeceptionCapstoneProject
             if (inputHandler.comboFlag)
             {
                 animatorHandler.anim.SetBool("canDoCombo", false);
-                if (lastAttack == weapon.Katana_Light_Attack_1)
-                {
-                    animatorHandler.PlayTargetAnimation(weapon.Katana_Light_Attack_2, true);
-                    lastAttack = weapon.Katana_Light_Attack_2;
-                }
-                //LightAttackCombos(weapon);
-                //HeavyAttackCombos(weapon);
+                
+                LightAttackCombos(weapon);
+                HeavyAttackCombos(weapon);
             }
         }
 
