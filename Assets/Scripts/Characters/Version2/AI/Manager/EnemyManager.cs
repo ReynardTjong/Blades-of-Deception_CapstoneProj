@@ -17,6 +17,7 @@ namespace BladesOfDeceptionCapstoneProject
         public Rigidbody enemyRigidbody;
 
         public bool isPerformingAction;
+        public bool isInteracting;
         public float distanceFromTarget;
         public float rotationSpeed = 25;
         public float maximumAttackRange = 1.5f;
@@ -46,7 +47,9 @@ namespace BladesOfDeceptionCapstoneProject
 
         private void Update()
         {
-            
+            HandleRecoveryTimer();
+
+            isInteracting = enemyAnimatorManager.anim.GetBool("isInteracting");
         }
 
         private void FixedUpdate()
