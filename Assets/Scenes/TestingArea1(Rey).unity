@@ -9147,13 +9147,11 @@ MonoBehaviour:
   enemyRigidbody: {fileID: 0}
   isPerformingAction: 0
   isInteracting: 0
-  distanceFromTarget: 0
   rotationSpeed: 25
   maximumAttackRange: 1.5
   detectionRadius: 20
   maximumDetectionAngle: 50
   minimumDetectionAngle: -50
-  viewableAngle: 0
   currentRecoveryTime: 0
 --- !u!114 &2591365775621571305
 MonoBehaviour:
